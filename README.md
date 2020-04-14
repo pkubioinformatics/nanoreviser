@@ -62,6 +62,7 @@ You will create an eviroment named nanorev for NanoReviser and install all depen
 
 	$ conda activate nanorev
  
+
  2. for linux just with cpu
 
 	#you need to replace the path where you installed anaconda, the default path would be ~/anaconda3/
@@ -70,6 +71,7 @@ You will create an eviroment named nanorev for NanoReviser and install all depen
 
 	$ conda activate nanorev_cpu	
  
+
  3. for macOS
     #you need to replace the path where you installed anaconda, the default path would be ~/anaconda3/
     
@@ -77,10 +79,12 @@ You will create an eviroment named nanorev for NanoReviser and install all depen
 
 	$ conda activate nanorev
 
+
 Please run the unitest in oder to make sure NanoReviser installed properly.
 
     $ sh unitest.sh
     
+
 
 ## Usage
 
