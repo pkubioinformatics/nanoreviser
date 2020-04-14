@@ -59,20 +59,20 @@ You will create an eviroment named nanorev for NanoReviser and install all depen
 
 For linux with gpu 
     
-    $ conda env create -n nanorev /**Your_Path_to_Anaconda**/envs/nanorev/ -f NanoReviser.yaml 
+    $ conda env create -n nanorev /**Your_Path_to_Anaconda**/envs/nanorev/ -f ./enviroment/NanoReviser.yaml 
 	$ conda activate nanorev
  
 
 For linux just with cpu
 	
-	$ conda env create -n nanorev_cpu /**Your_Path_to_Anaconda**/envs/nanorev/ -f NanoReviser_cpu.yaml 
+	$ conda env create -n nanorev_cpu /**Your_Path_to_Anaconda**/envs/nanorev/ -f ./enviroment/NanoReviser_cpu.yaml 
 	$ conda activate nanorev_cpu
-	$ conda install tensorflow==1.12.0	
+	$ conda install tensorflow==1.12.0
  
 
 For macOS
     
-    $ conda env create -n nanorev /**Your_Path_to_Anaconda**/envs/nanorev/ -f NanoReviser_macOS.yaml  
+    $ conda env create -n nanorev /**Your_Path_to_Anaconda**/envs/nanorev/ -f ./enviroment/NanoReviser_macOS.yaml  
 	$ conda activate nanorev
 
 
@@ -113,7 +113,7 @@ A training tools for generation model files for NanoReviser
 
     usage:
            python NanoReviser_train.py [options] -d <fast5_files> -m <output_model>
-           
+
            [example]
            python NanoReviser.py -d ./unitest/test_data/fast5/ -m ./unitest/unitest_model/ -f fasta
 
