@@ -36,14 +36,6 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 
-def this_folder():
-    if getattr(sys, 'frozen', False):
-        return os.path.dirname(sys.executable)
-    else:
-        return os.path.dirname(__file__)
-default_path = get_default_path(this_folder())
-
-
 def get_args():
     optParser = OptionParser(usage="%prog [-d] [-o]", version="%prog 1.0")
 
@@ -78,6 +70,12 @@ def get_args():
         print("The virsion of NanoReviser : 0.1 ")
     return tmp_args
 
+def this_folder():
+    if getattr(sys, 'frozen', False):
+        return os.path.dirname(sys.executable)
+    else:
+        return os.path.dirname(__file__)
+default_path = get_default_path(this_folder())
 
 def provide_fasta(name, fast5_fn_sg, args):
 
