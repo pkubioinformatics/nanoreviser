@@ -1,5 +1,5 @@
 
-#NanoReviser: An Error-correction Tool for Nanopore Sequencing Based on a Deep Learning Algorithm
+# NanoReviser: An Error-correction Tool for Nanopore Sequencing Based on a Deep Learning Algorithm
 ------------
 
 * [Introduction](#introduction)
@@ -14,7 +14,7 @@
 * [Citation](#citation)
 * [Contact](#contact)
 
-##Introduction
+## Introduction
 ------------
 
 Nanopore sequencing is regarded as one of the most promising third-generation sequencing (TGS) technologies. However, the nanopore sequencing reads are susceptible to a fairly high error rate owing to the difficulty in identifying the DNA bases from the complex electrical signals. Here we proposed a DNA basecalling reviser, **NanoReviser**, based on a deep learning algorithm to correct the basecalling errors introduced by current basecallers provided by default. In our module, we re-segmented the raw electrical signals based on the basecalled sequences provided by the default basecallers. By employing convolution neural networks (CNNs) and bidirectional long short-term memory (Bi-LSTM) networks, we took advantage of the information from the raw electrical signals and the basecalled sequences from the basecallers. 
@@ -22,7 +22,7 @@ Nanopore sequencing is regarded as one of the most promising third-generation se
 **NanoReviser**, as a post-basecalling reviser, significantly improving the basecalling quality. The NanoReviser package is freely available at https://github.com/pkubioinformatics/NanoReviser.
 
 
-##Requirements
+## Requirements
 -------------
 + [Anaconda](https://www.anaconda.com/)
 + [Python version >= 3.6.9](https://www.python.org/)
@@ -33,12 +33,12 @@ Nanopore sequencing is regarded as one of the most promising third-generation se
 + [h5py, version >= 2.5.0](http://www.h5py.org/)
 + [GraphMap, version >= 0.5.2](https://github.com/isovic/graphmap/)
 
-##Version
+## Version
 -------
 + NanoReviser 1.0 (Tested on Linux_64, including CentOS 6.5 and Ubuntu 16.04)
 
 
-##Installation
+## Installation
 ------------
 
 #### Install NanoReviser using git
