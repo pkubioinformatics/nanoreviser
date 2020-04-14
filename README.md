@@ -57,20 +57,20 @@ You will create an eviroment named nanorev for NanoReviser and install all depen
 **Note : you need to replace the path where you installed anaconda**
 
 
-* for linux with gpu 
-
+For linux with gpu 
+    
     $ conda env create -n nanorev /**Your_Path_to_Anaconda**/envs/nanorev/ -f NanoReviser.yaml 
 	$ conda activate nanorev
  
 
- * for linux just with cpu
+For linux just with cpu
 	
 	$ conda env create -n nanorev_cpu /**Your_Path_to_Anaconda**/envs/nanorev/ -f NanoReviser_cpu.yaml 
 	$ conda activate nanorev_cpu
 	$ conda install tensorflow==1.12.0	
  
 
- * for macOS
+For macOS
     
     $ conda env create -n nanorev /**Your_Path_to_Anaconda**/envs/nanorev/ -f NanoReviser_macOS.yaml  
 	$ conda activate nanorev
