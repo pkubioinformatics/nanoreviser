@@ -101,33 +101,23 @@ An ONT basecalling reviser based on deep learning
 	An ONT basecalling reviser based on deep learning
 
 	Options:
-    --version             show program's version number and exit
-    -h, --help            show this help message and exit
-    -d FAST5_BASE_DIR, --fast5_base_dir=FAST5_BASE_DIR
-                        path to the fast5 files
-    -o OUTPUT_DIR, --output_dir=OUTPUT_DIR
-                        path to store the output files
-    -f OUTPUT_FORMAT, --output_format=OUTPUT_FORMAT
-                        format of the output files, default is fasta
-    --thread=THREAD       thread, default is 100
-    -t TEMP_DIR, --tmp_dir=TEMP_DIR
-                        path to the tmp dir, which is used to store the
-                        preprocessing files
-    -e FAILED_READS_FILENAME, --failed_read=FAILED_READS_FILENAME
-                        document to log the failed reads, default is
-                        failed_read.txt
-    -g BASECALL_GROUP, --basecall_group=BASECALL_GROUP
-                        attrs for finding the events file in fast5 file,
-                        default is Basecall_1D_000
-    -s BASECALL_SUBGROUP, --basecall_subgroup=BASECALL_SUBGROUP
-                        attrs for finding the events file in fast5 file,
-                        default is BaseCalled_template
-    --disable_print       disable print on the screen
-    --test_mode           just for unitest
-    --model1_predict_dir=MODEL1_PREDICT_DIR
-                        model dirs for model1
-    --model2_predict_dir=MODEL2_PREDICT_DIR
-                        model dirs for model2
+    --version                                              show program's version number and exit
+    -h, --help                                             show this help message and exit
+    -d FAST5_BASE_DIR, --fast5_base_dir=FAST5_BASE_DIR     path to the fast5 files
+    -o OUTPUT_DIR, --output_dir=OUTPUT_DIR                 path to store the output files
+    --model1_predict_dir=MODEL1_PREDICT_DIR                model dirs for model1
+    --model2_predict_dir=MODEL2_PREDICT_DIR                model dirs for model2
+    -f OUTPUT_FORMAT, --output_format=OUTPUT_FORMAT        format of the output files, default is fasta
+    --thread=THREAD                                        thread, default is 100
+    -t TEMP_DIR, --tmp_dir=TEMP_DIR                        path to the tmp dir, which is used to store the 
+                                                           preprocessing files
+    -e FAILED_READS_FILENAME                               document to log the failed reads, default is
+                                                           failed_read.txt
+    --basecall_group=BASECALL_GROUP                        attrs for finding the events file in fast5 file, 
+                                                           default is Basecall_1D_000
+    --basecall_subgroup=BASECALL_SUBGROUP                  attrs for finding the events file in fast5 file,
+                                                           default is BaseCalled_template
+    
 
 
 #### NanoReviser_train.py
@@ -145,11 +135,23 @@ A training tools for generation model files for NanoReviser
 
 	An ONT basecalling reviser based on deep learning
 
-	optional arguments:
-	  -h, --help            show this help message and exit
-	  -v, --version         show program's version number and exit
-	  -d, --fast5_base_dir
-	  -o, --output_dir
+	Options:
+    --version                                              show program's version number and exit
+    -h, --help                                             show this help message and exit
+    -d FAST5_BASE_DIR, --fast5_base_dir=FAST5_BASE_DIR     path to the fast5 files
+    -o OUTPUT_DIR, --output_dir=OUTPUT_DIR                 path to store the output files
+    --model1_predict_dir=MODEL1_PREDICT_DIR                model dirs for model1
+    --model2_predict_dir=MODEL2_PREDICT_DIR                model dirs for model2
+    -f OUTPUT_FORMAT, --output_format=OUTPUT_FORMAT        format of the output files, default is fasta
+    --thread=THREAD                                        thread, default is 100
+    -t TEMP_DIR, --tmp_dir=TEMP_DIR                        path to the tmp dir, which is used to store the 
+                                                           preprocessing files
+    -e FAILED_READS_FILENAME                               document to log the failed reads, default is
+                                                           failed_read.txt
+    --basecall_group=BASECALL_GROUP                        attrs for finding the events file in fast5 file, 
+                                                           default is Basecall_1D_000
+    --basecall_subgroup=BASECALL_SUBGROUP                  attrs for finding the events file in fast5 file,
+                                                           default is BaseCalled_template
 
 ### Authour
 
