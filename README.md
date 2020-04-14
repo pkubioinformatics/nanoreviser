@@ -90,7 +90,10 @@ Please run the unitest in oder to make sure NanoReviser installed properly.
 An ONT basecalling reviser based on deep learning
 
     usage:
-           python NanoReviser.py [options] -d <fast5_files> -o <output_path>
+           python NanoReviser.py [options] -d <fast5_files> -o <output_path> -f <output_format, default=fasta>
+
+           [example]
+           python NanoReviser.py -d ./unitest/test_data/fast5/ -o ./unitest/nanorev_output/ -f fasta
 
 	usage: 
            python NanoReviser.py [options]
@@ -102,6 +105,7 @@ An ONT basecalling reviser based on deep learning
 	  -v, --version         show program's version number and exit
 	  -d, --fast5_base_dir
 	  -o, --output_dir
+	  -f, --output_format
 
 #### NanoReviser_train.py
 
@@ -109,6 +113,9 @@ A training tools for generation model files for NanoReviser
 
     usage:
            python NanoReviser_train.py [options] -d <fast5_files> -m <output_model>
+           
+           [example]
+           python NanoReviser.py -d ./unitest/test_data/fast5/ -m ./unitest/unitest_model/ -f fasta
 
 	usage: 
            python NanoReviser_train.py [options]
