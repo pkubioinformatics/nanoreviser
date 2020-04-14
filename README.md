@@ -50,7 +50,7 @@ change directory to NanoReviser
 
     $ cd nanoreviser
 
-If you currently have TensorFlow installed on your system, we would advise you to create a virtual environment to install NanoReviser. If you want to do so, we recommend the user-frendly [Anaconda](https://www.anaconda.com/).
+If you currently have TensorFlow installed on your system, we would advise you to create a virtual environment to install NanoReviser. If you want to do so, we recommend the user-friendly [Anaconda](https://www.anaconda.com/).
 
 You will create an eviroment named nanorev for NanoReviser and install all dependencies through conda
 	
