@@ -57,7 +57,7 @@ You will create an eviroment named nanorev for NanoReviser and install all depen
 	$ conda env create -n nanorev /**Your_Path_to_Anaconda**/envs/nanorev/ -f NanoReviser.yaml  #you need to replace the path where you installed anaconda, the default path would be ~/anaconda3/
 	$ conda activate nanorev
 
-Please run the unitest in oder to make sure NanoReviser is installed properly.
+Please run the unitest in oder to make sure NanoReviser installed properly.
 
     $ sh unitest.sh
     
