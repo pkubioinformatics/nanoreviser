@@ -114,8 +114,13 @@ def provide_fasta(name, fast5_fn_sg, args):
         shutil.rmtree(basecall_tmp_dir)
         print('[p:::] ' + fast5_fn_sg.split('.')[0] + '_out.fasta was saved......')
     except Exception as e:
-        print('[！！！Error] stroring : ' + fast5_fn_sg.split('.')[0] )
-
+        try:
+            out_fasta_fn = args.output_dir + fast5_fn_sg.split('.')[0] + '_out.fasta'
+            if not os.path.exists(args.output_dir):
+                os.makedirs(args.output_dir)
+            prep_read_fasta(fast5_fn, out_fasta_fn, list(event_bases))
+        except Exception as e:
+            print('[！！！Error] stroring : ' + fast5_fn_sg.split('.')[0])
 
 
 if __name__ == '__main__':
