@@ -37,38 +37,56 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 
 def get_args():
-    optParser = OptionParser(usage="%prog [-d] [-o]", version="%prog 1.0")
-
+    optParser = OptionParser(usage="%prog [-d] [-o]", version="%prog 1.0",
+                             description="An Error-correction Tool for Nanopore Sequencing Based on a Deep Learning Algorithm")
     optParser.add_option('-d', '--fast5_base_dir', action='store', type="string",
-                         dest='fast5_base_dir', )
+                         dest='fast5_base_dir',
+                         help='path to the fast5 files')
     optParser.add_option('-o', '--output_dir', action='store', type="string", dest='output_dir',
-                         default='./unitest/nanorev_output/')
-    optParser.add_option('-F', '--output_format', action='store', type="string", dest='output_format',
-                         default='fasta')
+                         default='./unitest/nanorev_output/',
+                         help='path to store the output files')
+    optParser.add_option('-f', '--output_format', action='store', type="string", dest='output_format',
+                         default='fasta',
+                         help='format of the output files, default is fasta')
     optParser.add_option("--thread", action="store", type="int", dest="thread",
-                         default=5)
-    optParser.add_option('-m', '--mapper_dir', action='store', type="string", dest='graphmap_exe',
-                         default='graphmap')
+                         default=100,
+                         help='thread, default is 100')
     optParser.add_option('-t', '--tmp_dir', action='store', type="string", dest='temp_dir',
-                         default='./unitest/tmp/')
+                          default='./unitest/tmp/',
+                         help='path to the tmp dir, which is used to store the preprocessing files')
     optParser.add_option('-e', '--failed_read', action='store', type="string", dest='failed_reads_filename',
-                         default='failed_reads.txt')
+                          default='failed_reads.txt',
+                         help='document to log the failed reads, default is failed_read.txt')
     optParser.add_option('-g', '--basecall_group', action='store', type="string", dest='basecall_group',
-                         default='Basecall_1D_000')
+                         default='Basecall_1D_000',
+                         help='attrs for finding the events file in fast5 file, default is Basecall_1D_000')
     optParser.add_option('-s', '--basecall_subgroup', action='store', type="string", dest='basecall_subgroup',
-                         default='BaseCalled_template')
+                         default='BaseCalled_template',
+                         help='attrs for finding the events file in fast5 file, default is BaseCalled_template')
+
+    optParser.add_option('--disable_print', action='store_true', default=False,
+                        help='disable print on the screen')
+    optParser.add_option('--test_mode', action='store_true', default=False,
+                        help='just for unitest')
     optParser.add_option('--model1_predict_dir', action='store', type="string", dest='model1_predict_dir',
-                         default='./model/ecoli_win13_50ep_model1.h5')
+                         default='./model/ecoli_win13_50ep_model1.h5',
+                        help='model dirs for model1')
     optParser.add_option('--model2_predict_dir', action='store', type="string", dest='model2_predict_dir',
-                         default='./model/ecoli_win13_50ep_model2.h5')
+                         default='./model/ecoli_win13_50ep_model2.h5',
+                        help='model dirs for model2')
     optParser.add_option("-v", "--virsion", action="store_true", dest="virsion",
                          help="version of NanoReviser")
 
 
     (tmp_args, _) = optParser.parse_args()
     if tmp_args.virsion:
-        print("The virsion of NanoReviser : 0.1 ")
-    return tmp_args
+        print("The virsion of NanoReviser : 1.0 ")
+        exit()
+    elif tmp_args.fast5_base_dir and tmp_args.output_dir:
+        return tmp_args
+    else:
+        optParser.parse_args(['-h'])
+        exit()
 
 def this_folder():
     if getattr(sys, 'frozen', False):
@@ -76,6 +94,7 @@ def this_folder():
     else:
         return os.path.dirname(__file__)
 default_path = get_default_path(this_folder())
+
 
 def provide_fasta(name, fast5_fn_sg, args):
 
@@ -122,9 +141,7 @@ def provide_fasta(name, fast5_fn_sg, args):
         except Exception as e:
             print('[！！！Error] stroring : ' + fast5_fn_sg.split('.')[0])
 
-
-if __name__ == '__main__':
-    ar_args=get_args()
+def main(ar_args):
     try:
         shutil.rmtree(ar_args.temp_dir)
     except Exception:
@@ -162,5 +179,11 @@ if __name__ == '__main__':
         shutil.rmtree(ar_args.temp_dir)
     except Exception as e:
         print('！！！[Error] remove tmp dir ' + ar_args.temp_dir + e)
+
+
+if __name__ == '__main__':
+    ar_args=get_args()
+    main(ar_args)
+
 
 
