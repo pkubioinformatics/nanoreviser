@@ -34,7 +34,7 @@ Nanopore sequencing is regarded as one of the most promising third-generation se
 
 ## Version
 
-+ NanoReviser 1.0 (Tested on Linux_64, including CentOS 6.5 and Ubuntu 16.04)
++ NanoReviser 1.0 (Tested on MacOS 10.14.6 and Linux_64, including CentOS 6.5 and Ubuntu 16.04)
 
 
 ## Installation
