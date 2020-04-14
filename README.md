@@ -53,30 +53,24 @@ change directory to NanoReviser
 If you currently have TensorFlow installed on your system, we would advise you to create a virtual environment to install NanoReviser. If you want to do so, we recommend the user-friendly [Anaconda](https://www.anaconda.com/).
 
 You will create an eviroment named nanorev for NanoReviser and install all dependencies through conda
- 
- 1. for linux with gpu 
+**you need to replace the path where you installed anaconda**, the default path would be ~/anaconda3/
 
-	#you need to replace the path where you installed anaconda, the default path would be ~/anaconda3/
-	
-	$ conda env create -n nanorev /**Your_Path_to_Anaconda**/envs/nanorev/ -f NanoReviser.yaml 
 
+* for linux with gpu 
+
+    $ conda env create -n nanorev /**Your_Path_to_Anaconda**/envs/nanorev/ -f NanoReviser.yaml 
 	$ conda activate nanorev
  
 
- 2. for linux just with cpu
-
-	#you need to replace the path where you installed anaconda, the default path would be ~/anaconda3/
+ * for linux just with cpu
 	
 	$ conda env create -n nanorev_cpu /**Your_Path_to_Anaconda**/envs/nanorev/ -f NanoReviser_cpu.yaml 
-
 	$ conda activate nanorev_cpu	
  
 
- 3. for macOS
-    #you need to replace the path where you installed anaconda, the default path would be ~/anaconda3/
+ * for macOS
     
     $ conda env create -n nanorev /**Your_Path_to_Anaconda**/envs/nanorev/ -f NanoReviser_macOS.yaml  
-
 	$ conda activate nanorev
 
 
