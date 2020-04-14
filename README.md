@@ -53,7 +53,8 @@ change directory to NanoReviser
 If you currently have TensorFlow installed on your system, we would advise you to create a virtual environment to install NanoReviser. If you want to do so, we recommend the user-friendly [Anaconda](https://www.anaconda.com/).
 
 You will create an eviroment named nanorev for NanoReviser and install all dependencies through conda
-**you need to replace the path where you installed anaconda**
+
+**Note : you need to replace the path where you installed anaconda**
 
 
 * for linux with gpu 
