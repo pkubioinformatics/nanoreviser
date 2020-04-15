@@ -187,7 +187,8 @@ For training NanoReviser by data in ./unitest/training_data/fast5/ and reference
     $ conda activate nanorev  #activate the python enviroment for nanoreviser
     $ pyton NanoReviser_train.py -d ./unitest/training_data/fast5/ -r ./unitest/training_data/reference.fasta -o ./unintest/training_results/ -m unitest
 
-This command will generate two model files in ./model/unitest and two summery files in ./unitest/training_data/ 
+This command will generate two model files in ./model/unitest and two summery files in ./unitest/training_data/
+ 
 
 
 ## Citation
