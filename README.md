@@ -150,6 +150,7 @@ A training tools for generation model files for NanoReviser
 
 ### Example
 
+
 For revising the fast5 files in ./unitest/test_data/fast5/ in order to get .fasta files,the command line would be:
 
     $ conda activate nanorev  #activate the python enviroment for nanoreviser
@@ -170,10 +171,12 @@ or
 
 ### Citation
 
+
 Luotong Wang, Li Qu, Longshu Yang, Yiying Wang Huaiqiu Zhu; NanoReviser: An Error-correction Tool for Nanopore Sequencing Based on a Deep Learning Algorithm
 
 
 ### Contact
+
 
 Please direct your questions to: Dr. Huaiqiu Zhu, [hqzhu@pku.edu.cn](hqzhu@pku.edu.cn)
 
