@@ -150,6 +150,9 @@ A training tools for generation model files for NanoReviser
 
 ## Example
 
+#### For basecalling revising
+
+**NanoReviser.py** : An ONT basecalling reviser based on deep learning
 
 For revising the fast5 files in ./unitest/test_data/fast5/ in order to get .fasta files,the command line would be:
 
@@ -167,6 +170,12 @@ Please run the following command in oder to get the entire fasta or fastq file c
 or
     
     $ cat ./nanorev_results/*.fastq > nanorev_results.fastq
+
+
+#### For training NanoReviser
+
+**NanoReviser_train.py** A training tools for generation model files for NanoReviser
+
 
 
 ## Citation
