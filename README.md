@@ -148,7 +148,7 @@ A training tools for generation model files for NanoReviser
     --basecall_subgroup=BASECALL_SUBGROUP                  attrs for finding the events file in fast5 file,
                                                            default is BaseCalled_template
 
-### Example
+## Example
 
 
 For revising the fast5 files in ./unitest/test_data/fast5/ in order to get .fasta files,the command line would be:
@@ -169,13 +169,13 @@ or
     $ cat ./nanorev_results/*.fastq > nanorev_results.fastq
 
 
-### Citation
+## Citation
 
 
 Luotong Wang, Li Qu, Longshu Yang, Yiying Wang Huaiqiu Zhu; NanoReviser: An Error-correction Tool for Nanopore Sequencing Based on a Deep Learning Algorithm
 
 
-### Contact
+## Contact
 
 
 Please direct your questions to: Dr. Huaiqiu Zhu, [hqzhu@pku.edu.cn](hqzhu@pku.edu.cn)
