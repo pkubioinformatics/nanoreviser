@@ -60,20 +60,15 @@ You will create an eviroment named nanorev for NanoReviser and install all depen
 For linux with gpu 
     
     $ conda env create -n nanorev /**Your_Path_to_Anaconda**/envs/nanorev/ -f ./enviroment/NanoReviser.yaml 
-	$ conda activate nanorev
+	  $ conda activate nanorev
  
 
 For linux just with cpu
 	
-	$ conda env create -n nanorev_cpu /**Your_Path_to_Anaconda**/envs/nanorev/ -f ./enviroment/NanoReviser_cpu.yaml 
-	$ conda activate nanorev_cpu
-	$ conda install tensorflow==1.12.0
- 
-
-For macOS
-    
-    $ conda env create -n nanorev /**Your_Path_to_Anaconda**/envs/nanorev/ -f ./enviroment/NanoReviser_macOS.yaml  
+	$ conda env create -n nanorev /**Your_Path_to_Anaconda**/envs/nanorev/ -f ./enviroment/NanoReviser_cpu.yaml 
 	$ conda activate nanorev
+	$ conda install tensorflow==1.12.0
+
 
 
 Please run the unitest in oder to make sure NanoReviser installed properly.
@@ -153,7 +148,27 @@ A training tools for generation model files for NanoReviser
     --basecall_subgroup=BASECALL_SUBGROUP                  attrs for finding the events file in fast5 file,
                                                            default is BaseCalled_template
 
-### Authour
+### Example
+
+For revising the fast5 files in ./unitest/test_data/fast5/ in order to get .fasta files,the command line would be:
+
+    $ conda activate nanorev  #activate the python enviroment for nanoreviser
+    $ pyton -d ./unitest/test_data/fast5/ -o ./unitest_nanorev_results/ -F fasta
+
+For revising the fast5 files in ./unitest/test_data/fast5/ in order to get .fastq files,the command line would be:
+
+    $ conda activate nanorev  #activate the python enviroment for nanoreviser
+    $ pyton -d ./unitest/test_data/fast5/ -o ./unitest_nanorev_results/ -F fastq
+
+Please run the following command in oder to get the entire fasta or fastq file contains all reads in fasta5's dir:
+
+    $ cat ./nanorev_results/*.fasta > nanorev_results.fasta 
+or
+    
+    $ cat ./nanorev_results/*.fastq > nanorev_results.fastq
+
+
+### Citation
 
 Luotong Wang, Li Qu, Longshu Yang, Yiying Wang Huaiqiu Zhu; NanoReviser: An Error-correction Tool for Nanopore Sequencing Based on a Deep Learning Algorithm
 
