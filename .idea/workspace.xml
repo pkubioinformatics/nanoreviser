@@ -2,11 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a698eef-a67e-4107-a0b1-e94fd08d2514" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/nanoreviser.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NanoReviser_train.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NanoReviser.py" beforeDir="false" afterPath="$PROJECT_DIR$/NanoReviser.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nanorevutils/nanorev_fast5_handeler.py" beforeDir="false" afterPath="$PROJECT_DIR$/nanorevutils/nanorev_fast5_handeler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nanorevutils/output_handeler.py" beforeDir="false" afterPath="$PROJECT_DIR$/nanorevutils/output_handeler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/result/ZF_screen28_20170130_FN_MN19061_sequencing_run_sample_id_98490_ch10_read5252_strand_out.fasta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/result/ZF_screen28_20170130_FN_MN19061_sequencing_run_sample_id_98490_ch10_read6297_strand_out.fasta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/result/ZF_screen28_20170130_FN_MN19061_sequencing_run_sample_id_98490_ch117_read6465_strand_out.fasta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/result/ZF_screen28_20170130_FN_MN19061_sequencing_run_sample_id_98490_ch13_read2251_strand_out.fasta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/result/ZF_screen28_20170130_FN_MN19061_sequencing_run_sample_id_98490_ch141_read5436_strand_out.fasta" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,17 +25,26 @@
       <file leaf-file-name="nanorev_fast5_handeler.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/nanorevutils/nanorev_fast5_handeler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2958">
-              <caret line="174" column="29" selection-start-line="174" selection-start-column="29" selection-end-line="174" selection-end-column="29" />
+            <state relative-caret-position="471">
+              <caret line="172" selection-start-line="172" selection-end-line="172" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NanoReviser.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="NanoReviser.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/NanoReviser.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-502">
-              <caret line="80" column="42" lean-forward="true" selection-start-line="80" selection-start-column="42" selection-end-line="80" selection-end-column="42" />
+            <state relative-caret-position="357">
+              <caret line="30" column="85" selection-start-line="30" selection-start-column="70" selection-end-line="30" selection-end-column="85" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NanoReviser_train.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/NanoReviser_train.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="10" selection-start-line="10" selection-end-line="10" />
             </state>
           </provider>
         </entry>
@@ -59,11 +73,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="output_handeler.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="output_handeler.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/nanorevutils/output_handeler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1904">
-              <caret line="114" column="24" selection-start-line="114" selection-start-column="24" selection-end-line="115" selection-end-column="54" />
+            <state relative-caret-position="30">
+              <caret line="29" column="36" selection-start-line="29" selection-start-column="36" selection-end-line="29" selection-end-column="36" />
               <folding>
                 <element signature="e#124#133#0" expanded="true" />
               </folding>
@@ -97,10 +111,11 @@
         <option value="$PROJECT_DIR$/nanorevutils/nanorevcnn.py" />
         <option value="$PROJECT_DIR$/nanorevutils/preprocessing.py" />
         <option value="$PROJECT_DIR$/nanorevutils/lstmmodel.py" />
-        <option value="$PROJECT_DIR$/nanorevutils/output_handeler.py" />
         <option value="$PROJECT_DIR$/nanorevutils/fileoptions.py" />
+        <option value="$PROJECT_DIR$/NanoReviser_train.py" />
         <option value="$PROJECT_DIR$/nanorevutils/nanorev_fast5_handeler.py" />
         <option value="$PROJECT_DIR$/NanoReviser.py" />
+        <option value="$PROJECT_DIR$/nanorevutils/output_handeler.py" />
       </list>
     </option>
   </component>
@@ -114,7 +129,7 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="21" />
+    <option name="x" value="4" />
     <option name="y" value="23" />
     <option name="width" value="1380" />
     <option name="height" value="835" />
@@ -133,22 +148,6 @@
             <path>
               <item name="nanoreviser" type="b2602c69:ProjectViewProjectNode" />
               <item name="nanoreviser" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nanoreviser" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nanoreviser" type="462c0819:PsiDirectoryNode" />
-              <item name="nanorevutils" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nanoreviser" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nanoreviser" type="462c0819:PsiDirectoryNode" />
-              <item name="unitest" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nanoreviser" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nanoreviser" type="462c0819:PsiDirectoryNode" />
-              <item name="unitest" type="462c0819:PsiDirectoryNode" />
-              <item name="test_data" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -196,8 +195,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="21" y="23" width="1380" height="835" extended-state="0" />
-    <editor active="true" />
+    <frame x="4" y="23" width="1380" height="835" extended-state="0" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -322,27 +320,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nanorevutils/nanorev_fast5_handeler.py">
+    <entry file="file://$PROJECT_DIR$/NanoReviser_train.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2958">
-          <caret line="174" column="29" selection-start-line="174" selection-start-column="29" selection-end-line="174" selection-end-column="29" />
+        <state relative-caret-position="170">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nanorevutils/output_handeler.py">
+    <entry file="file://$PROJECT_DIR$/nanorevutils/nanorev_fast5_handeler.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1904">
-          <caret line="114" column="24" selection-start-line="114" selection-start-column="24" selection-end-line="115" selection-end-column="54" />
-          <folding>
-            <element signature="e#124#133#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="471">
+          <caret line="172" selection-start-line="172" selection-end-line="172" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/NanoReviser.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-502">
-          <caret line="80" column="42" lean-forward="true" selection-start-line="80" selection-start-column="42" selection-end-line="80" selection-end-column="42" />
+        <state relative-caret-position="357">
+          <caret line="30" column="85" selection-start-line="30" selection-start-column="70" selection-end-line="30" selection-end-column="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nanorevutils/output_handeler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="29" column="36" selection-start-line="29" selection-start-column="36" selection-end-line="29" selection-end-column="36" />
+          <folding>
+            <element signature="e#124#133#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -149,6 +149,27 @@ def get_read_data(fast5_fn, basecall_group, basecall_subgroup):
         #     print(fast5_fn,'quality error')
         return abs_event_start, start, length, bases, signal, ab_mean, ab_std
 
+def extract_fastq(fast5_fn, out_fasta_fn,
+                  basecall_group='Basecall_1D_000',
+                  basecall_subgroup='BaseCalled_template'):
+    fastq = ''
+    try:
+        fast5_data = h5py.File(fast5_fn, 'r')
+    except Exception:
+        raise NotImplementedError('Error opening file. Likely a corrupted file.')
+
+    try:
+        fastq = fast5_data['/Analyses/' + basecall_group + '/' + basecall_subgroup + '/Fastq'][()]
+        fastq_result = fastq.decode('utf8')
+        fastq_result = fastq_result.split('\n')
+        bases = fastq_result[1]
+        qul = fastq_result[3]
+        assert len(bases)>=14
+        assert len(bases)==len(qul)
+        return bases[7:-7], qul[7:-7]
+    except Exception:
+        raise NotImplementedError('Error opening file. Likely a corrupted file.')
+
 
 class Opt(object):
     def __init__(self, default_path, fast5_base_dir, temp_dir):

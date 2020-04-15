@@ -24,8 +24,10 @@ def prep_read_fasta(fast5_fn, read_fasta_fn, bases):
     return None
     """
     try:
+        fast5_fn = fast5_fn.split('/')[-1]
         # reads_fasta = ''
-        reads_fasta = ">" + fast5_fn.replace(' ', '|||') + '\n' + ''.join(bases) + '\n'
+        reads_fasta = ">" + fast5_fn.replace(' ', '|||') + '\n' + \
+                      ''.join(bases)
         # print(reads_fasta)
         read_fp = open(read_fasta_fn, 'w')
         read_fp.write(reads_fasta)
@@ -36,10 +38,13 @@ def prep_read_fasta(fast5_fn, read_fasta_fn, bases):
 
 
 def prep_read_fastq(fast5_fn, read_fastq_fn, bases, qul):
-
     try:
         # reads_fasta = ''
-        reads_fastq = "@" + fast5_fn.replace(' ', '|||') + '\n' + ''.join(bases) + '\n+' + ''.jion(qul) +'\n'
+        fast5_fn = fast5_fn.split('/')[-1]
+        reads_fastq = "@" + fast5_fn.replace(' ', '|||') + '\n' + \
+                      ''.join(bases)  \
+                      +'+\n' + \
+                      ''.join(qul)
         # print(reads_fasta)
         read_fp = open(read_fastq_fn, 'w')
         read_fp.write(reads_fastq)

@@ -24,7 +24,7 @@ import pandas as pd
 
 from albacore.path_utils import get_default_path
 from nanorevutils.fileoptions import check_path, copy_file
-from nanorevutils.nanorev_fast5_handeler import get_read_data
+from nanorevutils.nanorev_fast5_handeler import get_read_data, extract_fastq
 from nanorevutils.preprocessing import signal_segmentation, get_base_color, get_base_label
 from nanorevutils.input_handeler import parse_fasta
 from nanorevutils.lstmmodel import get_model1, get_model2
@@ -45,7 +45,7 @@ def get_args():
     optParser.add_option('-o', '--output_dir', action='store', type="string", dest='output_dir',
                          default='./unitest/nanorev_output/',
                          help='path to store the output files')
-    optParser.add_option('-f', '--output_format', action='store', type="string", dest='output_format',
+    optParser.add_option('-F', '--output_format', action='store', type="string", dest='output_format',
                          default='fasta',
                          help='format of the output files, default is fasta')
     optParser.add_option("--thread", action="store", type="int", dest="thread",
@@ -124,22 +124,42 @@ def provide_fasta(name, fast5_fn_sg, args):
         x = x.T
     except Exception as e:
         print('[！！！Error] input features: ' + fast5_fn_sg.split('.')[0] + str(e))
-    try:
-        y_read, y_qul = get_base_l(default_path, fast5_fn, basecall_tmp_dir, 0, 0, 0)
-        out_fasta_fn = args.output_dir + fast5_fn_sg.split('.')[0] + '_out.fasta'
-        if not os.path.exists(args.output_dir):
-            os.makedirs(args.output_dir)
-        prep_read_fasta(fast5_fn, out_fasta_fn, list(y_read))
-        shutil.rmtree(basecall_tmp_dir)
-        print('[p:::] ' + fast5_fn_sg.split('.')[0] + '_out.fasta was saved......')
-    except Exception as e:
+    if args.output_format=='fasta':
         try:
+            y_read, y_qul = get_base_l(default_path, fast5_fn, basecall_tmp_dir, 0, 0, 0)
             out_fasta_fn = args.output_dir + fast5_fn_sg.split('.')[0] + '_out.fasta'
             if not os.path.exists(args.output_dir):
                 os.makedirs(args.output_dir)
-            prep_read_fasta(fast5_fn, out_fasta_fn, list(event_bases))
+            prep_read_fasta(fast5_fn, out_fasta_fn, list(y_read))
+            shutil.rmtree(basecall_tmp_dir)
+            print('[p:::] ' + fast5_fn_sg.split('.')[0] + '_out.fasta was saved......')
         except Exception as e:
-            print('[！！！Error] stroring : ' + fast5_fn_sg.split('.')[0])
+            try:
+                out_fasta_fn = args.output_dir + fast5_fn_sg.split('.')[0] + '_out.fasta'
+                if not os.path.exists(args.output_dir):
+                    os.makedirs(args.output_dir)
+                prep_read_fasta(fast5_fn, out_fasta_fn, list(event_bases))
+            except Exception as e:
+                print('[！！！Error] stroring : ' + fast5_fn_sg.split('.')[0]+ '_out.fasta......')
+    elif args.output_format=='fastq':
+        try:
+            y_read, y_qul = get_base_l(default_path, fast5_fn, basecall_tmp_dir, 0, 0, 0)
+            out_fastq_fn = args.output_dir + fast5_fn_sg.split('.')[0] + '_out.fastq'
+            if not os.path.exists(args.output_dir):
+                os.makedirs(args.output_dir)
+            prep_read_fastq(fast5_fn, out_fastq_fn, list(y_read), list(y_qul))
+            shutil.rmtree(basecall_tmp_dir)
+            print('[p:::] ' + fast5_fn_sg.split('.')[0] + '_out.fastq was saved......')
+        except Exception as e:
+            try:
+                out_fastq_fn = args.output_dir + fast5_fn_sg.split('.')[0] + '_out.fastq'
+                if not os.path.exists(args.output_dir):
+                    os.makedirs(args.output_dir)
+                seq, qul = extract_fastq(fast5_fn, out_fastq_fn)
+                prep_read_fastq(fast5_fn, out_fastq_fn, list(seq), list(qul))
+            except Exception as e:
+                print('[！！！Error] stroring : ' + fast5_fn_sg.split('.')[0]+ '_out.fastq......')
+
 
 def main(ar_args):
     try:
