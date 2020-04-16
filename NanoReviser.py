@@ -22,6 +22,7 @@ import shutil
 import numpy as np
 import pandas as pd
 
+from nanorevutils.nanolog import logger_config
 from albacore.path_utils import get_default_path
 from nanorevutils.fileoptions import check_path, copy_file
 from nanorevutils.nanorev_fast5_handeler import get_read_data, extract_fastq
@@ -48,6 +49,9 @@ def get_args():
     optParser.add_option('-F', '--output_format', action='store', type="string", dest='output_format',
                          default='fasta',
                          help='format of the output files, default is fasta')
+    optParser.add_option('-S', '--species', action='store', type="string", dest='species',
+                         default='human',
+                         help='format of the output files, default is fasta')
     optParser.add_option("--thread", action="store", type="int", dest="thread",
                          default=100,
                          help='thread, default is 100')
@@ -64,15 +68,15 @@ def get_args():
                          default='BaseCalled_template',
                          help='attrs for finding the events file in fast5 file, default is BaseCalled_template')
 
-    optParser.add_option('--disable_print', action='store_true', default=False,
-                        help='disable print on the screen')
+    # optParser.add_option('--disable_print', action='store_true', default=False,
+    #                     help='disable print on the screen')
     optParser.add_option('--test_mode', action='store_true', default=False,
                         help='just for unitest')
     optParser.add_option('--model1_predict_dir', action='store', type="string", dest='model1_predict_dir',
-                         default='./model/ecoli_win13_50ep_model1.h5',
+                         default='./model/human/human_win13_50ep_model1.h5',
                         help='model dirs for model1')
     optParser.add_option('--model2_predict_dir', action='store', type="string", dest='model2_predict_dir',
-                         default='./model/ecoli_win13_50ep_model2.h5',
+                         default='./model/human/human_win13_50ep_model2.h5',
                         help='model dirs for model2')
     optParser.add_option("-v", "--virsion", action="store_true", dest="virsion",
                          help="version of NanoReviser")
@@ -97,8 +101,8 @@ default_path = get_default_path(this_folder())
 
 
 def provide_fasta(name, fast5_fn_sg, args):
-
-    print('[b:::] Run task %s pid %s' % (name, os.getpid()),' : ',fast5_fn_sg)
+    if not args.test_mode:
+        print('[b:::] Run task %s pid %s' % (name, os.getpid()),' : ',fast5_fn_sg)
     fast5_fn = os.path.join(args.fast5_base_dir, fast5_fn_sg)
     basecall_tmp_dir = str(args.temp_dir) + str(name) + '/basecall_tmp/'
     copy_file(fast5_fn, basecall_tmp_dir)
@@ -132,7 +136,8 @@ def provide_fasta(name, fast5_fn_sg, args):
                 os.makedirs(args.output_dir)
             prep_read_fasta(fast5_fn, out_fasta_fn, list(y_read))
             shutil.rmtree(basecall_tmp_dir)
-            print('[p:::] ' + fast5_fn_sg.split('.')[0] + '_out.fasta was saved......')
+            if not args.test_mode:
+                print('[p:::] ' + fast5_fn_sg.split('.')[0] + '_out.fasta was saved......')
         except Exception as e:
             try:
                 out_fasta_fn = args.output_dir + fast5_fn_sg.split('.')[0] + '_out.fasta'
@@ -149,7 +154,8 @@ def provide_fasta(name, fast5_fn_sg, args):
                 os.makedirs(args.output_dir)
             prep_read_fastq(fast5_fn, out_fastq_fn, list(y_read), list(y_qul))
             shutil.rmtree(basecall_tmp_dir)
-            print('[p:::] ' + fast5_fn_sg.split('.')[0] + '_out.fastq was saved......')
+            if not args.test_mode:
+                print('[p:::] ' + fast5_fn_sg.split('.')[0] + '_out.fastq was saved......')
         except Exception as e:
             try:
                 out_fastq_fn = args.output_dir + fast5_fn_sg.split('.')[0] + '_out.fastq'
@@ -162,6 +168,15 @@ def provide_fasta(name, fast5_fn_sg, args):
 
 
 def main(ar_args):
+    if ar_args.test_mode:
+        logger = logger_config(log_path='./unitest/unitest_log.txt', logging_name='unitest')
+        ar_args.model1_predict_dir = './model/ecoli/ecoli_win13_50ep_model1.h5'
+        ar_args.model2_predict_dir = './model/human/human_win13_50ep_model2.h5'
+    if ar_args.species:
+        ar_args.model1_predict_dir = './model/' + str(ar_args.species) + '/' + str(ar_args.species) + '_win13_50ep_model1.h5'
+        ar_args.model2_predict_dir = './model/' + str(ar_args.species) + '/' + str(ar_args.species) + '_win13_50ep_model2.h5'
+    if not (os.path.exists(ar_args.model1_predict_dir) and os.path.exists(ar_args.model2_predict_dir)):
+        raise RuntimeError('！！！[Error] model file: Please check the dir of model file!!')
     try:
         shutil.rmtree(ar_args.temp_dir)
     except Exception:
@@ -186,15 +201,20 @@ def main(ar_args):
             # print(pool_size*j+i)
             # print(fast5_fns[pool_size*j+i])
             p.apply_async(provide_fasta,  args=(i, fast5_fns[pool_size*j+i],ar_args,))
-    print('[p:::] Waiting for all subprocesses done...')
+    if not ar_args.test_mode:
+        print('[p:::] Waiting for all subprocesses done...')
     p.close()
     p.join()
-    print('[s:::] All subprocesses done.')
+    if not ar_args.test_mode:
+        print('[s:::] All subprocesses done.')
     # for fast5_fn_sg in fast5_fns:
     #     provide_fasta(fast5_fn_sg, fast5_fn_sg, ar_args,genome_index)
     end_time = time.time()
-    print('[s:::] NanoReviser time consuming:%.2f seconds' % (end_time - start_time))
-
+    if not ar_args.test_mode:
+        print('[s:::] NanoReviser time consuming:%.2f seconds' % (end_time - start_time))
+    else:
+        logger.info("Congratulations, NanoReviser is installed properly")
+        shutil.rmtree(ar_args.output_dir)
     try:
         shutil.rmtree(ar_args.temp_dir)
     except Exception as e:
@@ -203,7 +223,10 @@ def main(ar_args):
 
 if __name__ == '__main__':
     ar_args=get_args()
-    main(ar_args)
+    try:
+        main(ar_args)
+    except Exception as e:
+        print(e)
 
 
 
