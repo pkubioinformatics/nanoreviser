@@ -137,6 +137,35 @@ def get_base_l(default_path, fast5_fn, temp_dir, event_bases=0, y_pred=0, y_pred
     # assert (len(result_DNA) == len(result_qulity))
     return result_DNA, result_qulity
 
+def prep_basecaller_options(read_fn, out_fn, config_fn='./ont-guppy-cpu/data/dna_r9.4.1_450bps_fast.cfg'):
+
+    return ['--input_path',  read_fn, '--save_path', out_fn, '--config', config_fn ]
+
+
+def get_basecaller_result(file_name, basecaller_options, basecaller_exe='./nanorevutils/utils/bin/guppy_basecaller'):
+    from subprocess import call
+    FNULL = open(os.devnull, 'w')
+    stdout_sink = FNULL
+    exitStatus = call([basecaller_exe, ] + basecaller_options, stdout=stdout_sink, stderr=FNULL)
+    FNULL.close()
+    print(file_name, 'has been basecalled......')
+
+    return exitStatus
+
+def get_base_G(fast5_fn, temp_dir, event_bases=0, y_pred=0, y_pred2=0):
+    result_DNA = ''
+    result_qulity = ''
+    input_dir = temp_dir
+    basecaller_options = prep_basecaller_options(input_dir, temp_dir)
+    # print(basecaller_options)
+    if get_basecaller_result(fast5_fn,basecaller_options)==0:
+        result_DNA, result_qulity = get_dna_qul(temp_dir)
+    else:
+        raise NotImplementedError('Error in revising file, like a broken .fast5 file.')
+    assert (result_DNA != '')
+    # assert (len(result_DNA) == len(result_qulity))
+    return result_DNA, result_qulity
+
 
 NB_CLASS = 6
 SENT_LEN = 13

@@ -25,10 +25,13 @@ import pandas as pd
 from nanorevutils.nanolog import logger_config
 from albacore.path_utils import get_default_path
 from nanorevutils.fileoptions import check_path, copy_file
+from nanorevutils.output_handeler import get_base_1, get_base_2, get_base_G, get_base_l
 from nanorevutils.nanorev_fast5_handeler import get_read_data, extract_fastq
 from nanorevutils.preprocessing import signal_segmentation, get_base_color, get_base_label
 from nanorevutils.input_handeler import parse_fasta
-from nanorevutils.output_handeler import get_base_l, prep_read_fasta, prep_read_fastq, get_model1, get_model2
+from nanorevutils.output_handeler import  prep_read_fasta, prep_read_fastq, get_model1, get_model2
+
+
 
 
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
@@ -127,7 +130,8 @@ def provide_fasta(name, fast5_fn_sg, args):
         print('[！！！Error] input features: ' + fast5_fn_sg.split('.')[0] + str(e))
     if args.output_format=='fasta':
         try:
-            y_read, y_qul = get_base_l(default_path, fast5_fn, basecall_tmp_dir, model1, model2, 0)
+            # y_read, y_qul = get_base_l(default_path, fast5_fn, basecall_tmp_dir, model1, model2, 0)
+            y_read, y_qul = get_base_l(fast5_fn, basecall_tmp_dir, model1, model2, 0)
             out_fasta_fn = args.output_dir + fast5_fn_sg.split('.')[0] + '_out.fasta'
             if not os.path.exists(args.output_dir):
                 os.makedirs(args.output_dir)
@@ -145,7 +149,8 @@ def provide_fasta(name, fast5_fn_sg, args):
                 print('[！！！Error] stroring : ' + fast5_fn_sg.split('.')[0]+ '_out.fasta......')
     elif args.output_format=='fastq':
         try:
-            y_read, y_qul = get_base_l(default_path, fast5_fn, basecall_tmp_dir, model1, model2, 0)
+            # y_read, y_qul = get_base_l(default_path, fast5_fn, basecall_tmp_dir, model1, model2, 0)
+            y_read, y_qul = get_base_l(fast5_fn, basecall_tmp_dir, model1, model2, 0)
             out_fastq_fn = args.output_dir + fast5_fn_sg.split('.')[0] + '_out.fastq'
             if not os.path.exists(args.output_dir):
                 os.makedirs(args.output_dir)
