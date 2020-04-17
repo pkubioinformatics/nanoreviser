@@ -105,6 +105,8 @@ def this_folder():
 def provide_fasta(name, fast5_fn_sg, args):
     if not args.test_mode:
         print('[b:::] Run task %s pid %s' % (name, os.getpid()),' : ',fast5_fn_sg)
+    if ar_args.test_mode:
+        logger = logger_config(log_path='./unitest/unitest_log.txt', logging_name='unitest')
     fast5_fn = os.path.join(args.fast5_base_dir, fast5_fn_sg)
     basecall_tmp_dir = str(args.temp_dir) + str(name) + '/basecall_tmp/'
     copy_file(fast5_fn, basecall_tmp_dir)
@@ -140,14 +142,20 @@ def provide_fasta(name, fast5_fn_sg, args):
             shutil.rmtree(basecall_tmp_dir)
             if not args.test_mode:
                 print('[p:::] ' + fast5_fn_sg.split('.')[0] + '_out.fasta was saved......')
+            else:
+                logger.info("Congratulations, NanoReviser is installed properly")
         except Exception as e:
-            try:
-                out_fasta_fn = args.output_dir + fast5_fn_sg.split('.')[0] + '_out.fasta'
-                if not os.path.exists(args.output_dir):
-                    os.makedirs(args.output_dir)
-                prep_read_fasta(fast5_fn, out_fasta_fn, list(event_bases))
-            except Exception as e:
-                print('[！！！Error] stroring : ' + fast5_fn_sg.split('.')[0]+ '_out.fasta......')
+            if not args.test_mode:
+                try:
+                    out_fasta_fn = args.output_dir + fast5_fn_sg.split('.')[0] + '_out.fasta'
+                    if not os.path.exists(args.output_dir):
+                        os.makedirs(args.output_dir)
+                    prep_read_fasta(fast5_fn, out_fasta_fn, list(event_bases))
+                except Exception as e:
+                    raise NotImplemented('[！！！Error] stroring : ' + fast5_fn_sg.split('.')[0]+ '_out.fasta......')
+            else:
+                logger.error('[!!! Error] Basecalling')
+
     elif args.output_format=='fastq':
         try:
             # y_read, y_qul = get_base_l(default_path, fast5_fn, basecall_tmp_dir, model1, model2, 0)
@@ -160,15 +168,20 @@ def provide_fasta(name, fast5_fn_sg, args):
             shutil.rmtree(basecall_tmp_dir)
             if not args.test_mode:
                 print('[p:::] ' + fast5_fn_sg.split('.')[0] + '_out.fastq was saved......')
+            else:
+                logger.info("Congratulations, NanoReviser is installed properly")
         except Exception as e:
-            try:
-                out_fastq_fn = args.output_dir + fast5_fn_sg.split('.')[0] + '_out.fastq'
-                if not os.path.exists(args.output_dir):
-                    os.makedirs(args.output_dir)
-                seq, qul = extract_fastq(fast5_fn, out_fastq_fn)
-                prep_read_fastq(fast5_fn, out_fastq_fn, list(seq), list(qul))
-            except Exception as e:
-                print('[！！！Error] stroring : ' + fast5_fn_sg.split('.')[0]+ '_out.fastq......')
+            if not args.test_mode:
+                try:
+                    out_fastq_fn = args.output_dir + fast5_fn_sg.split('.')[0] + '_out.fastq'
+                    if not os.path.exists(args.output_dir):
+                        os.makedirs(args.output_dir)
+                    seq, qul = extract_fastq(fast5_fn, out_fastq_fn)
+                    prep_read_fastq(fast5_fn, out_fastq_fn, list(seq), list(qul))
+                except Exception as e:
+                    raise NotImplemented('[！！！Error] stroring : ' + fast5_fn_sg.split('.')[0] + '_out.fastq......')
+            else:
+                logger.error('[!!! Error] Basecalling')
 
 
 def main(ar_args):
@@ -217,7 +230,6 @@ def main(ar_args):
     if not ar_args.test_mode:
         print('[s:::] NanoReviser time consuming:%.2f seconds' % (end_time - start_time))
     else:
-        logger.info("Congratulations, NanoReviser is installed properly")
         shutil.rmtree(ar_args.output_dir)
     try:
         shutil.rmtree(ar_args.temp_dir)
