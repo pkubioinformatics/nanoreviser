@@ -78,13 +78,13 @@ def get_args():
                          default=512,
                          help='batch size, default is 256')
     optParser.add_option("-e", "--epochs", action="store", type="int", dest="epochs",
-                         default=2,
+                         default=50,
                          help='epochs, default is 50')
     optParser.add_option("-w", "--window_size", action="store", type="int", dest="window_size",
                          default=13,
                          help='window size, default is 13')
     optParser.add_option("-c", "--read_counts", action="store", type="int", dest="read_counts",
-                         default=1,
+                         default=0,
                          help='the number of read included in the training data, must '
                               'smaller than the number of files stored in fast5_base_dir, '
                               '0 for use all the files in the fast5_base_dir and defult is 0.')
