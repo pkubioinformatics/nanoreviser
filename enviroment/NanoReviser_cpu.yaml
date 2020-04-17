@@ -46,7 +46,7 @@ dependencies:
   - yaml=0.1.7=had09818_2
   - zlib=1.2.11=h7b6447c_3
   - pip:
-    - https://mirror.oxfordnanoportal.com/software/analysis/ont_albacore-2.3.1-cp36-cp36m-manylinux1_x86_64.whl 
+    - https://mirror.oxfordnanoportal.com/software/analysis/ont_albacore-2.3.4-cp36-cp36m-manylinux1_x86_64.whl 
     - biopython==1.76
     - chardet==3.0.4
     - docopt==0.6.2
