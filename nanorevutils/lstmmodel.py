@@ -25,12 +25,11 @@ from nanorevutils.nanorevcnn import identity_Block
 
 
 NB_CLASS = 6
-SENT_LEN = 11
 SIGNEL_LEN = 50
 VEC_LEN = 6
 
 
-def get_model1():
+def get_model1(SENT_LEN):
     signal_input = Input(shape=(SENT_LEN, 50, 1), dtype='float', name='signal_input')
 
     identity1 = identity_Block(signal_input, 8, 3)
@@ -79,10 +78,10 @@ def get_model1():
     att_model_predict.compile(optimizer='adam',
                               loss=['sparse_categorical_crossentropy'],
                               metrics=['accuracy'])
-    return att_model_predict
+    return att_model_train, att_model_predict
 
 
-def get_model2():
+def get_model2(SENT_LEN):
     signal_input = Input(shape=(SENT_LEN, 50, 1), dtype='float', name='signal_input')
 
     identity1 = identity_Block(signal_input, 8, 3)
@@ -131,6 +130,6 @@ def get_model2():
     att_model_predict.compile(optimizer='adam',
                               loss=['sparse_categorical_crossentropy'],
                               metrics=['accuracy'])
-    return att_model_predict
+    return att_model_train, att_model_predict
 
 

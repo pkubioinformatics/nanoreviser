@@ -12,6 +12,7 @@ import os
 import sys
 from pathlib import Path
 import shutil
+import json
 
 
 def this_folder():
@@ -29,11 +30,12 @@ def this_folder():
 
 def check_path(my_path):
     my_file = Path(str(my_path))
-    if not my_file.exists():
+    my_path=str(my_path)
+    if not os.path.exists(my_file):
         try:
-            os.mkdir(my_path)
+            os.makedirs(my_path)
         except Exception as e:
-            print('！！！[Error] make dir ' + my_file + e)
+            raise FileNotFoundError('！！！[Error] make dir ' + my_path + e)
 
 
 def copy_file(fn, dstpath='./tmp/basecall_tmp/'):
@@ -50,3 +52,14 @@ def copy_file(fn, dstpath='./tmp/basecall_tmp/'):
             print('!!![Error] ',fn, 'cannot move.....')
     else:
         print('!!![Error] ',src, 'does not exit')
+
+
+def dict_to_json_write_file(hash_set, save_fn):
+    with open(save_fn, 'w') as f:
+        json.dump(hash_set, f)
+
+
+def json_file_to_dict(load_fn):
+    with open(load_fn, 'r') as f:
+        hash_set = json.load(f)
+    return hash_set

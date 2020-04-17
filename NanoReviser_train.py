@@ -23,35 +23,45 @@ import pandas as pd
 
 from nanorevutils.nanolog import logger_config
 from albacore.path_utils import get_default_path
-from nanorevutils.fileoptions import check_path, copy_file
-from nanorevutils.nanorev_fast5_handeler import get_read_data, extract_fastq
-from nanorevutils.preprocessing import signal_segmentation, get_base_color, get_base_label
-from nanorevutils.input_handeler import parse_fasta
+from nanorevutils.fileoptions import check_path, dict_to_json_write_file
 from nanorevutils.lstmmodel import get_model1, get_model2
-
+from nanorevutils.nanorevtrainutils import train_preprocessing, get_trainning_input
 
 def get_args():
     optParser = OptionParser(usage="%prog [-d] [-o]", version="%prog 1.0",
                              description="An Error-correction Tool for Nanopore Sequencing Based on a Deep Learning Algorithm")
     optParser.add_option('-d', '--fast5_base_dir', action='store', type="string",
+                         default='./unitest/training_data/fast5/',
                          dest='fast5_base_dir',
                          help='path to the fast5 files')
     optParser.add_option('-o', '--output_dir', action='store', type="string", dest='output_dir',
                          default='./unitest/nanorev_training_result/',
                          help='path to store the output sumarry files')
     optParser.add_option('-r', '--reference', action='store', type="string", dest='genome_fn',
-                         default='./unitest/nanorev_training_result/',
-                         help='path to store the output files')
-    optParser.add_option('-m', '--output_model', action='store', type="string", dest='model_dir',
+                         default='./unitest/training_data/reference.fasta',
                          help='path to store the output files')
 
+    optParser.add_option('--model_type', action='store', type="string", dest='model_type',
+                         default='both',
+                         help='both, model1 or model2, default is both')
+    optParser.add_option('-S', '--species', action='store', type="string", dest='species',
+                         default='unitest',
+                         help='species of training data, default is unitest for test Nanoreviser_train')
+    optParser.add_option('-M', '--output_model', action='store', type="string", dest='model_dir',
+                         default='./model/',
+                         help='path to store the model files')
+
+    optParser.add_option('-m', '--mapper_exe', action='store', type="string", dest='graphmap_exe',
+                         default='graphmap',
+                         help='the align tool for generate the lable of training data, default is graphmap')
     optParser.add_option('-L', '--output_format', action='store', type="string", dest='output_format',
                          default='sam',)
     optParser.add_option("--thread", action="store", type="int", dest="thread",
                          default=1,
                          help='thread, default is 1')
+
     optParser.add_option('-t', '--tmp_dir', action='store', type="string", dest='temp_dir',
-                          default='./tmp/',
+                          default='./train_tmp/',
                          help='path to the tmp dir, which is used to store the preprocessing files')
     optParser.add_option('-f', '--failed_read', action='store', type="string", dest='failed_reads_filename',
                           default='failed_reads.txt',
@@ -63,18 +73,18 @@ def get_args():
                          default='BaseCalled_template',
                          help='attrs for finding the events file in fast5 file, default is BaseCalled_template')
 
-
+    #options for deeplearning
     optParser.add_option("-b", "--batch_size", action="store", type="int", dest="batch_size",
-                         default=256,
+                         default=512,
                          help='batch size, default is 256')
     optParser.add_option("-e", "--epochs", action="store", type="int", dest="epochs",
-                         default=50,
+                         default=1,
                          help='epochs, default is 50')
     optParser.add_option("-w", "--window_size", action="store", type="int", dest="window_size",
-                         default=13,
+                         default=9,
                          help='window size, default is 13')
-    optParser.add_option("-c", "--read_count", action="store", type="int", dest="read_count",
-                         default=0,
+    optParser.add_option("-c", "--read_counts", action="store", type="int", dest="read_counts",
+                         default=1,
                          help='the number of read included in the training data, must '
                               'smaller than the number of files stored in fast5_base_dir, '
                               '0 for use all the files in the fast5_base_dir and defult is 0.')
@@ -83,23 +93,24 @@ def get_args():
                          help='validation data size, default is 0.01, which means 1% '
                               'reads in fast5_base_dir would be used as validation data.')
 
+    optParser.add_option('--model1_train_dir', action='store', type="string", dest='model1_train_dir',
+                         default='',
+                        help='model dirs for trained model1, for transfer learning')
+    optParser.add_option('--model2_train_dir', action='store', type="string", dest='model2_train_dir',
+                         default='',
+                        help='model dirs for trained model1, for transfer learning')
 
     optParser.add_option('--test_mode', action='store_true', default=False,
-                        help='just for unitest')
-
-
-    optParser.add_option('--model1_predict_dir', action='store', type="string", dest='model1_predict_dir',
-                         default='./model/ecoli_win13_50ep_model1.h5',
-                        help='model dirs for model1')
-    optParser.add_option('--model2_predict_dir', action='store', type="string", dest='model2_predict_dir',
-                         default='./model/ecoli_win13_50ep_model2.h5',
-                        help='model dirs for model2')
+                         help='just for unitest')
     optParser.add_option("-v", "--virsion", action="store_true", dest="virsion",
                          help="version of NanoReviser")
 
     (tmp_args, _) = optParser.parse_args()
+    tmp_args.model_dir = str(tmp_args.model_dir) +'/'+ str(tmp_args.species)+'/'
+    tmp_args.train_input_dir = str(tmp_args.model_dir) + '/training_input/'
+    tmp_args.train_model_dir = str(tmp_args.model_dir) + '/training_model/'
     if tmp_args.virsion:
-        print("The virsion of NanoReviser : 0.1 ")
+        print("The virsion of NanoReviser : 1.0 ")
     return tmp_args
 
 
@@ -111,6 +122,109 @@ def this_folder():
 default_path = get_default_path(this_folder())
 
 
+def model_fn_generate(args, model_tag):
+    model_train_fn = args.train_model_dir + \
+                 'train_'+str(args.species) + \
+                 '_win' + str(args.window_size) + '_' + \
+                 str(args.epochs) +'ep_' + \
+                 str(model_tag) + '.h5'
+    model_predict_fn_sg = args.model_dir + \
+                 str(args.species) + \
+                 '_win' + str(args.window_size) + '_' +  \
+                 str(args.epochs) +'ep_' + \
+                 str(model_tag)
+    model_predict_fn = model_predict_fn_sg + '.h5'
+    fn_sg = str(args.species) + \
+            '_win' + str(args.window_size) + '_' +  \
+            str(args.epochs) +'ep_' + \
+            str(model_tag)
+    model_history_fn = args.output_dir + fn_sg+'_hisroty.json'
+    model_summary_fn = args.output_dir + fn_sg + '_parameters.json'
+    return model_predict_fn, model_train_fn, model_history_fn, model_summary_fn
+
+
+def write_sumery_file(history, summary, history_fn, summary_fn):
+    try:
+        dict_to_json_write_file(summary, summary_fn)
+    except Exception as e:
+        raise RuntimeError('！！！[Error] saveing summary hisroty result ', e)
+    try:
+        dict_to_json_write_file(history, history_fn)
+    except Exception as e:
+        raise RuntimeError('！！！[Error] saveing training hisroty result ',e)
+
+
+def summary_generate(args):
+    summary={
+        'model_type':args.model_type,
+        'species':args.species,
+        'input_file':args.fast5_base_dir,
+        'read_counts':args.read_counts,
+        'window_size':args.window_size,
+        'epochs':args.epochs,
+        'batch_size':args.batch_size,
+        'validation_split':args.validation_split
+    }
+    return summary
+
 
 if __name__ == '__main__':
     ar_args=get_args()
+    if ar_args.test_mode:
+        logger = logger_config(log_path='./unitest/unitest_log.txt', logging_name='unitest')
+    try:
+        try:
+            shutil.rmtree(ar_args.temp_dir)
+        except Exception:
+            tttt = 1
+        check_path(ar_args.temp_dir)
+        check_path(ar_args.output_dir)
+        check_path(ar_args.train_input_dir)
+        train_preprocessing(ar_args)
+        check_path(ar_args.train_model_dir)
+        try:
+            x_train, signal_x_train, y_train, y_train2 = get_trainning_input(ar_args.test_mode,
+                                                                             ar_args.train_input_dir,
+                                                                             ar_args.window_size)
+        except Exception as e:
+            raise RuntimeError(e)
+        try:
+            att_model_train1, att_model_predict1 = get_model1(ar_args.window_size)
+            if not ar_args.test_mode:
+                print('[p:::] model buiding.....')
+        except Exception as e:
+            raise RuntimeError('！！！[Error] loading training model ',e)
+        try:
+            if not ar_args.test_mode:
+                print('[p:::] start to training model1, please waiting......')
+                verbose=1
+            else:
+                verbose=0
+            att_model_train1, att_model_predict1 = get_model1(ar_args.window_size)
+            history1 = att_model_train1.fit([signal_x_train[:, :, :, np.newaxis], x_train, y_train],
+                                             [y_train, np.zeros((len(y_train2), 1))],
+                                             class_weight={0: 3, 1: 5, 2: 1, 3: 1, 4: 1, 5: 1},
+                                             validation_split=ar_args.validation_split,
+                                             shuffle=True,
+                                             epochs=ar_args.epochs,
+                                             batch_size=ar_args.batch_size,
+                                             verbose=verbose)
+
+            model1_pre_fn, model1_train_fn, model1_history_fn, model1_summary_fn = model_fn_generate(ar_args,'model1')
+            att_model_train1.save_weights(model1_train_fn)
+            att_model_predict1.save_weights(model1_pre_fn)
+            model1_summary = summary_generate(ar_args)
+            write_sumery_file(dict(history1.history), model1_summary, model1_history_fn, model1_summary_fn)
+            if not ar_args.test_mode:
+                print('[p:::] model 1 completed......')
+            # att_model_train2, att_model_predict2 = get_model2(ar_args.window_size)
+            # if ar_args.test_mode:
+            #     print('[p:::] model buiding.....')
+        except Exception as e:
+            raise RuntimeError('！！！[Error] loading training model ', e)
+
+    except Exception as e:
+        if ar_args.test_mode:
+            logger.error(e)
+        else:
+            print(e)

@@ -1,1 +1,0 @@
-2020-04-15 21:33:05,672 - unitest - INFO - Congratulations, NanoReviser is installed properly

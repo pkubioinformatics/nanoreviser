@@ -28,8 +28,7 @@ from nanorevutils.fileoptions import check_path, copy_file
 from nanorevutils.nanorev_fast5_handeler import get_read_data, extract_fastq
 from nanorevutils.preprocessing import signal_segmentation, get_base_color, get_base_label
 from nanorevutils.input_handeler import parse_fasta
-from nanorevutils.lstmmodel import get_model1, get_model2
-from nanorevutils.output_handeler import get_base_l, prep_read_fasta, prep_read_fastq, get_base_1
+from nanorevutils.output_handeler import get_base_l, prep_read_fasta, prep_read_fastq, get_model1, get_model2
 
 
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
