@@ -121,15 +121,13 @@ def provide_fasta(name, fast5_fn_sg, args):
     except Exception as e:
         print('[！！！Error] signal: ' + fast5_fn_sg.split('.')[0] + str(e))
     try:
-        read_bases = np.array(pd.Series(event_bases).apply(get_base_color)) / 300.0
-        clean_event_length = np.array(event_length) / 10.0
-        x = np.vstack([read_bases, signal_mean, signal_std, clean_event_length, raw_mean, raw_std])
-        x = x.T
+        model1=get_model1()
+        model2=get_model2()
     except Exception as e:
         print('[！！！Error] input features: ' + fast5_fn_sg.split('.')[0] + str(e))
     if args.output_format=='fasta':
         try:
-            y_read, y_qul = get_base_l(default_path, fast5_fn, basecall_tmp_dir, 0, 0, 0)
+            y_read, y_qul = get_base_l(default_path, fast5_fn, basecall_tmp_dir, model1, model2, 0)
             out_fasta_fn = args.output_dir + fast5_fn_sg.split('.')[0] + '_out.fasta'
             if not os.path.exists(args.output_dir):
                 os.makedirs(args.output_dir)
@@ -147,7 +145,7 @@ def provide_fasta(name, fast5_fn_sg, args):
                 print('[！！！Error] stroring : ' + fast5_fn_sg.split('.')[0]+ '_out.fasta......')
     elif args.output_format=='fastq':
         try:
-            y_read, y_qul = get_base_l(default_path, fast5_fn, basecall_tmp_dir, 0, 0, 0)
+            y_read, y_qul = get_base_l(default_path, fast5_fn, basecall_tmp_dir, model1, model2, 0)
             out_fastq_fn = args.output_dir + fast5_fn_sg.split('.')[0] + '_out.fastq'
             if not os.path.exists(args.output_dir):
                 os.makedirs(args.output_dir)
