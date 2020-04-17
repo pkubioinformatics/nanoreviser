@@ -13,7 +13,7 @@ import os
 import shutil
 
 if __name__ == '__main__':
-    log_fn='./unitest_log.txt'
+    log_fn='./unitest/unitest_log.txt'
     with open(log_fn, 'r') as lg:
         result_list = lg.readlines()
     assert len(result_list)==3
