@@ -78,10 +78,10 @@ def get_args():
                          default=512,
                          help='batch size, default is 256')
     optParser.add_option("-e", "--epochs", action="store", type="int", dest="epochs",
-                         default=1,
+                         default=2,
                          help='epochs, default is 50')
     optParser.add_option("-w", "--window_size", action="store", type="int", dest="window_size",
-                         default=9,
+                         default=13,
                          help='window size, default is 13')
     optParser.add_option("-c", "--read_counts", action="store", type="int", dest="read_counts",
                          default=1,
@@ -138,7 +138,7 @@ def model_fn_generate(args, model_tag):
             '_win' + str(args.window_size) + '_' +  \
             str(args.epochs) +'ep_' + \
             str(model_tag)
-    model_history_fn = args.output_dir + fn_sg+'_hisroty.json'
+    model_history_fn = args.output_dir + fn_sg+'_hisroty.csv'
     model_summary_fn = args.output_dir + fn_sg + '_parameters.json'
     return model_predict_fn, model_train_fn, model_history_fn, model_summary_fn
 
@@ -149,12 +149,13 @@ def write_sumery_file(history, summary, history_fn, summary_fn):
     except Exception as e:
         raise RuntimeError('！！！[Error] saveing summary hisroty result ', e)
     try:
-        dict_to_json_write_file(history, history_fn)
+        pd.DataFrame(history).to_csv(history_fn, index=False)
     except Exception as e:
         raise RuntimeError('！！！[Error] saveing training hisroty result ',e)
 
 
-def summary_generate(args):
+def summary_generate(args, start_t):
+    end_t = time.time()
     summary={
         'model_type':args.model_type,
         'species':args.species,
@@ -163,7 +164,10 @@ def summary_generate(args):
         'window_size':args.window_size,
         'epochs':args.epochs,
         'batch_size':args.batch_size,
-        'validation_split':args.validation_split
+        'validation_split':args.validation_split,
+        'start_time':start_t,
+        'end_time':end_t,
+        'training_time':str(start_t-end_t)+' seconds',
     }
     return summary
 
@@ -173,6 +177,7 @@ if __name__ == '__main__':
     if ar_args.test_mode:
         logger = logger_config(log_path='./unitest/unitest_log.txt', logging_name='unitest')
     try:
+        start_time = time.time()
         try:
             shutil.rmtree(ar_args.temp_dir)
         except Exception:
@@ -188,6 +193,8 @@ if __name__ == '__main__':
                                                                              ar_args.window_size)
         except Exception as e:
             raise RuntimeError(e)
+
+
         try:
             att_model_train1, att_model_predict1 = get_model1(ar_args.window_size)
             if not ar_args.test_mode:
@@ -197,9 +204,10 @@ if __name__ == '__main__':
         try:
             if not ar_args.test_mode:
                 print('[p:::] start to training model1, please waiting......')
-                verbose=1
+                verbose=2
             else:
                 verbose=0
+            m1_start_t = time.time()
             att_model_train1, att_model_predict1 = get_model1(ar_args.window_size)
             history1 = att_model_train1.fit([signal_x_train[:, :, :, np.newaxis], x_train, y_train],
                                              [y_train, np.zeros((len(y_train2), 1))],
@@ -213,16 +221,49 @@ if __name__ == '__main__':
             model1_pre_fn, model1_train_fn, model1_history_fn, model1_summary_fn = model_fn_generate(ar_args,'model1')
             att_model_train1.save_weights(model1_train_fn)
             att_model_predict1.save_weights(model1_pre_fn)
-            model1_summary = summary_generate(ar_args)
+            model1_summary = summary_generate(ar_args,m1_start_t)
             write_sumery_file(dict(history1.history), model1_summary, model1_history_fn, model1_summary_fn)
             if not ar_args.test_mode:
                 print('[p:::] model 1 completed......')
-            # att_model_train2, att_model_predict2 = get_model2(ar_args.window_size)
-            # if ar_args.test_mode:
-            #     print('[p:::] model buiding.....')
         except Exception as e:
-            raise RuntimeError('！！！[Error] loading training model ', e)
+            raise RuntimeError('！！！[Error]training model 1...... ', e)
 
+        try:
+            if not ar_args.test_mode:
+                print('[p:::] start to training model2, please waiting......')
+                verbose = 2
+            else:
+                verbose = 0
+            m2_start_t=time.time()
+            att_model_train2, att_model_predict2 = get_model2(ar_args.window_size)
+            history2 = att_model_train2.fit([signal_x_train[:, :, :, np.newaxis], x_train, y_train2],
+                                            [y_train2, np.zeros((len(y_train2), 1))],
+                                            class_weight={0: 3, 1: 5, 2: 1, 3: 1, 4: 1, 5: 1},
+                                            validation_split=ar_args.validation_split,
+                                            shuffle=True,
+                                            epochs=ar_args.epochs,
+                                            batch_size=ar_args.batch_size,
+                                            verbose=verbose)
+
+            model2_pre_fn, model2_train_fn, model2_history_fn, model2_summary_fn = model_fn_generate(ar_args,
+                                                                                                     'model2')
+            att_model_train2.save_weights(model2_train_fn)
+            att_model_predict2.save_weights(model2_pre_fn)
+            model2_summary = summary_generate(ar_args)
+            write_sumery_file(dict(history2.history), model2_summary, model2_history_fn, model2_summary_fn)
+            if not ar_args.test_mode:
+                print('[p:::] model 2 completed......')
+
+        except Exception as e:
+            raise RuntimeError('！！！[Error]training model 2', e)
+
+        try:
+            end_time = time.time()
+            if not ar_args.test_mode:
+                print('[s:::] NanoReviser time consuming:%.2f seconds' % (end_time - start_time))
+            shutil.rmtree(ar_args.temp_dir)
+        except Exception as e:
+            print('！！！[Error] remove tmp dir ' + ar_args.temp_dir + e)
     except Exception as e:
         if ar_args.test_mode:
             logger.error(e)
