@@ -203,13 +203,13 @@ Please note that the training process of NanoReviser_train could take quite a lo
 
 There would be four result files in ./unitest_training_results/
 
-(1)unitest_win13_50ep_model1_history.csv, which records the training history of NanoReviser model1
+  (1)**unitest_win13_50ep_model1_history.csv** (Training history of NanoReviser model1)
 
-(2)unitest_win13_50ep_model1_summery.json, which records the paramaters of of NanoReviser model1
+  (2)**unitest_win13_50ep_model1_summery.json** (Paramaters of of NanoReviser model1)
 
-(3)unitest_win13_50ep_model2_history.csv, which records the training history of NanoReviser model2
+  (3)**unitest_win13_50ep_model2_history.csv** (Training history of NanoReviser model2)
 
-(4)unitest_win13_50ep_model2_summery.json, which records the paramaters of of NanoReviser model2
+  (4)**unitest_win13_50ep_model2_summery.json** (Paramaters of of NanoReviser model2)
 
 ## Citation
 
