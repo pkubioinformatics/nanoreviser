@@ -128,7 +128,7 @@ if __name__ == '__main__':
         logger = logger_config(log_path='./unitest/unitest_log.txt', logging_name='unitest')
         ar_args.epochs=2
         ar_args.read_counts=1
-        ar_args.window_size=5
+        ar_args.window_size
     try:
         start_time = time.time()
         try:
@@ -216,9 +216,12 @@ if __name__ == '__main__':
                 print('[s:::] The training time of NanoReviser_train is :%.2f seconds' % (end_time - start_time))
             else:
                 logger.info("Congratulations, NanoReviser_train is installed properly")
-                shutil.rmtree(ar_args.output_dir)
-                shutil.rmtree(ar_args.model_dir)
-            shutil.rmtree(ar_args.temp_dir)
+                if os.path.exists(ar_args.output_dir):
+                    shutil.rmtree(ar_args.output_dir)
+                if os.path.exists(ar_args.model_dir):
+                    shutil.rmtree(ar_args.model_dir)
+            if os.path.exists(ar_args.temp_dir):
+                shutil.rmtree(ar_args.temp_dir)
         except Exception as e:
             print('！！！[Error] remove tmp dir ' + ar_args.temp_dir + e)
     except Exception as e:
