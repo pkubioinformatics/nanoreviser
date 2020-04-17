@@ -21,6 +21,6 @@ python NanoReviser_train.py  --test_mode
 
 # 3. check the output of nanoviser
 # ---------------------------
-# python ./unitest/check_nanoreviser.py
+python ./unitest/check_nanoreviser.py
 
 echo "unitest has been completed."
