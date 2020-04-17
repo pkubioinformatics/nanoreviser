@@ -59,7 +59,7 @@ You will create an eviroment named nanorev for NanoReviser and install all depen
 
 For linux with gpu 
 
-    $ conda env create -n nanorev /**Your_Path_to_Anaconda**/envs/nanorev/ -f ./enviroment/NanoReviser.yaml 
+      $ conda env create -n nanorev /**Your_Path_to_Anaconda**/envs/nanorev/ -f ./enviroment/NanoReviser.yaml 
 	  $ conda activate nanorev
  
 
@@ -73,12 +73,12 @@ For linux just with cpu
 
 Please run the unitest to make sure NanoReviser installed properly.
 
-    $ conda activate nanorev
-    $ sh unitest.sh
+      $ conda activate nanorev
+      $ sh unitest.sh
 
 If both NanoReviser.py and NanoReviser_train.py are available, you will get
 
-     Congratulations, please have fun with NanoReviser :)
+       Congratulations, please have fun with NanoReviser :)
     
 
 ## Usage
