@@ -127,7 +127,7 @@ if __name__ == '__main__':
     if ar_args.test_mode:
         logger = logger_config(log_path='./unitest/unitest_log.txt', logging_name='unitest')
         ar_args.epochs=2
-        ar_args.read_counts=5
+        ar_args.read_counts=1
         ar_args.window_size
     try:
         start_time = time.time()
