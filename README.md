@@ -195,7 +195,7 @@ For training NanoReviser by data in ./unitest/training_data/fast5/ and reference
 
 This command will generate two model files in ./model/unitest and for summery files in ./unitest_training_data/.
 
-Please note that the training process of $NanoReviser_train.py$ could take quite a long time, we highly recommend to use screen command to run the command as follow:
+Please note that the training process of NanoReviser_train.py could take quite a long time, we highly recommend to use screen command to run the command as follow:
 
     $ screen -S nanorev_train
     $ conda activate nanorev  #activate the python enviroment for nanoreviser
