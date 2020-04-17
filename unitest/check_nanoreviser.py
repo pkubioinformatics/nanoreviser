@@ -22,9 +22,10 @@ if __name__ == '__main__':
         tag1 = tags[2]
         tag2 = tags[-1].split(',')[0]
         assert (tag1=='INFO' and tag2=='Congratulations')
-    os.remove(log_fn)
-    if os.path.exists('../unintest'):
-        shutil.rmtree('../unintest')
+    try:
+        os.remove(log_fn)
+    except Exception as e:
+        a=1
     if os.path.exists('../unitest_training_results/'):
         shutil.rmtree('../unitest_training_results')
     print("Congratulations, please have fun with NanoReviser :)")
