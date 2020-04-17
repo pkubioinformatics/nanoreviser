@@ -171,12 +171,12 @@ def main(ar_args):
     if ar_args.test_mode:
         logger = logger_config(log_path='./unitest/unitest_log.txt', logging_name='unitest')
         ar_args.model1_predict_dir = './model/ecoli/ecoli_win13_50ep_model1.h5'
-        ar_args.model2_predict_dir = './model/human/human_win13_50ep_model2.h5'
+        ar_args.model2_predict_dir = './model/ecoli/ecoli_win13_50ep_model2.h5'
     if ar_args.species:
         ar_args.model1_predict_dir = './model/' + str(ar_args.species) + '/' + str(ar_args.species) + '_win13_50ep_model1.h5'
         ar_args.model2_predict_dir = './model/' + str(ar_args.species) + '/' + str(ar_args.species) + '_win13_50ep_model2.h5'
     if not (os.path.exists(ar_args.model1_predict_dir) and os.path.exists(ar_args.model2_predict_dir)):
-        raise RuntimeError('！！！[Error] model file: Please check the dir of model file!!')
+        raise RuntimeError('！！！[Error] model file: Please check the dir of models file!!')
     try:
         shutil.rmtree(ar_args.temp_dir)
     except Exception:

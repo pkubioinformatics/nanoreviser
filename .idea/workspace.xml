@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a698eef-a67e-4107-a0b1-e94fd08d2514" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/nanorevutils/nanolog.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nanorevutils/nanorevtrainutils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/unitest/check_nanoreviser.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NanoReviser.py" beforeDir="false" afterPath="$PROJECT_DIR$/NanoReviser.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NanoReviser_train.py" beforeDir="false" afterPath="$PROJECT_DIR$/NanoReviser_train.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nanorevutils/input_handeler.py" beforeDir="false" afterPath="$PROJECT_DIR$/nanorevutils/input_handeler.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nanorevutils/preprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/nanorevutils/preprocessing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unitest.sh" beforeDir="false" afterPath="$PROJECT_DIR$/unitest.sh" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,25 +10,6 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="DockManager">
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file leaf-file-name="NanoReviser.py" pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/NanoReviser.py">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="-420">
-                    <caret line="174" column="22" lean-forward="true" selection-start-line="174" selection-start-column="22" selection-end-line="174" selection-end-column="22" />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
@@ -67,7 +40,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NanoReviser_train.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="NanoReviser_train.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/NanoReviser_train.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="769">
@@ -105,6 +78,15 @@
               <folding>
                 <element signature="e#119#128#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NanoReviser.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/NanoReviser.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="164">
+              <caret line="178" column="81" selection-start-line="178" selection-start-column="81" selection-end-line="178" selection-end-column="81" />
             </state>
           </provider>
         </entry>
@@ -179,11 +161,6 @@
             <path>
               <item name="nanoreviser" type="b2602c69:ProjectViewProjectNode" />
               <item name="nanoreviser" type="462c0819:PsiDirectoryNode" />
-              <item name="nanorevutils" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nanoreviser" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nanoreviser" type="462c0819:PsiDirectoryNode" />
               <item name="unitest" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -241,9 +218,9 @@
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32914925" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.32914925" />
       <window_info anchor="right" id="Remote Host" order="3" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49688148" visible="true" weight="0.25451806" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49688148" visible="true" weight="0.25451806" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32914925" />
@@ -418,8 +395,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/NanoReviser.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-420">
-          <caret line="174" column="22" lean-forward="true" selection-start-line="174" selection-start-column="22" selection-end-line="174" selection-end-column="22" />
+        <state relative-caret-position="164">
+          <caret line="178" column="81" selection-start-line="178" selection-start-column="81" selection-end-line="178" selection-end-column="81" />
         </state>
       </provider>
     </entry>
