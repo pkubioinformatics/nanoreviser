@@ -58,16 +58,16 @@ You will create an eviroment named nanorev for NanoReviser and install all depen
 
 
 For linux with gpu 
-    
-      $ conda env create -n nanorev /**Your_Path_to_Anaconda**/envs/nanorev/ -f ./enviroment/NanoReviser.yaml 
+
+    $ conda env create -n nanorev /**Your_Path_to_Anaconda**/envs/nanorev/ -f ./enviroment/NanoReviser.yaml 
 	  $ conda activate nanorev
  
 
 For linux just with cpu
 	
-	$ conda env create -n nanorev /**Your_Path_to_Anaconda**/envs/nanorev/ -f ./enviroment/NanoReviser_cpu.yaml 
-	$ conda activate nanorev
-	$ conda install tensorflow==1.12.0
+	  $ conda env create -n nanorev /**Your_Path_to_Anaconda**/envs/nanorev/ -f ./enviroment/NanoReviser_cpu.yaml 
+	  $ conda activate nanorev
+	  $ conda install tensorflow==1.12.0
 
 
 
@@ -94,10 +94,10 @@ An ONT basecalling reviser based on deep learning
            [example]
            python NanoReviser.py -d ./unitest/test_data/fast5/ -o ./unitest/nanorev_output/ -f fasta -S ecoli
 
-	usage: 
+	  usage: 
            python NanoReviser.py [options]
 
-	An ONT basecalling reviser based on deep learning
+	  An ONT basecalling reviser based on deep learning
 	
     Options:
     --version                                              show program's version number and exit
@@ -128,9 +128,9 @@ A training tools for generation model files for NanoReviser
     usage:
            python NanoReviser_train.py [options] 
 
-	An ONT basecalling reviser based on deep learning
+	  An ONT basecalling reviser based on deep learning
 
-	Options:
+	  Options:
     --version                                              show program's version number and exit
     -h, --help                                             show this help message and exit
     -d FAST5_BASE_DIR, --fast5_base_dir=FAST5_BASE_DIR     path to the fast5 files
