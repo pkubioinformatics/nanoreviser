@@ -10,7 +10,6 @@
 # 1. Test NanoReviser to generate fasta or fastq
 # ---------------------------
 
-python NanoReviser.py -d ./unitest/test_data/fast5/ -o ./unitest/fasta_file/ -F fasta --test_mode
 python NanoReviser.py -d ./unitest/test_data/fast5/ -o ./unitest/fastq_file/ -F fastq --test_mode
 
 # 2. Test NanoReviser_train for generate model file
