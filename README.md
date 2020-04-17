@@ -74,8 +74,11 @@ For linux just with cpu
 Please run the unitest in oder to make sure NanoReviser installed properly.
 
     $ sh unitest.sh
-    
 
+If NanoReviser.py and NanoReviser_train.py are installed properly, you will get
+
+     Congratulations, please have fun with NanoReviser :)
+    
 
 ## Usage
 
@@ -100,7 +103,7 @@ An ONT basecalling reviser based on deep learning
     -h, --help                                             show this help message and exit
     -d FAST5_BASE_DIR, --fast5_base_dir=FAST5_BASE_DIR     path to the fast5 files
     -o OUTPUT_DIR, --output_dir=OUTPUT_DIR                 path to store the output files
-    -s SPECIES, --species=SPECIES                          species model to load which located in ./model/, 
+    -S SPECIES, --species=SPECIES                          species model to load which located in ./model/, 
                                                            default is human
     --model1_predict_dir=MODEL1_PREDICT_DIR                model dirs for model1
     --model2_predict_dir=MODEL2_PREDICT_DIR                model dirs for model2
@@ -133,6 +136,7 @@ A training tools for generation model files for NanoReviser
     -r REFERENCE, --reference=REFERENCE                    reference genome for labeling the training data
     -m OUTPUT_MODEL, --output_dir=OUTPUT_MODEL             name of the dir to store model1 and model2
     -o OUTPUT_DIR, --output_dir=OUTPUT_DIR                 path to store the output summery files
+
     -b BATCH_SIZE, --batch_size=BATCH_SIZE                 batch size of trainig NanoReviser, default is 256
     -e EPOCHS, --epochs=EPOCHS                             epochs of training NanoReviser, defualt is 50
     -w WINDOW_SIZE, --window_size=WINDOW_SIZE              window size for slicing the read input, defualt is 13
@@ -140,7 +144,8 @@ A training tools for generation model files for NanoReviser
                                                            smaller than the number of files stored in fast5_base_dir, 0 for use all the files in the fast5_base_dir and defult is 0.
     --validation_split                                     validation data size, default is 0.01, which means 1% 
                                                            reads in fast5_base_dir would be used as validation data.
-    --thread=THREAD                                        thread, default is 100
+
+    --thread=THREAD                                        thread, default is 1
     --model_type=MODEL_TYPE                                'both', 'model1' or 'model2', default is 'both'
     --mapper_exe=MAPPER_EXE                                the align tool for generate the lable of training 
                                                            data, default is 'graphmap'
@@ -185,11 +190,20 @@ or
 For training NanoReviser by data in ./unitest/training_data/fast5/ and reference genome in ./unitest/training_data/reference.fasta in order to get model files in ./model/unitest/ and result files in ./unitest/training_result/,the command line would be:
 
     $ conda activate nanorev  #activate the python enviroment for nanoreviser
-    $ pyton NanoReviser_train.py -d ./unitest/training_data/fast5/ -r ./unitest/training_data/reference.fasta -o ./unintest/training_results/ -m unitest
+    $ pyton NanoReviser_train.py -d ./unitest/training_data/fast5/ -r ./unitest/training_data/reference.fasta -o ./unitest_training_results/ -S unitest
 
-This command will generate two model files in ./model/unitest and two summery files in ./unitest/training_data/
- 
+This command will generate two model files in ./model/unitest and two summery files in ./unitest_training_data/.
+Please note that the training process of NanoReviser_train could take quite a long time, we highly recommend to use screen command to run the command as follow:
 
+    $ screen -S nanorev_train
+    $ conda activate nanorev  #activate the python enviroment for nanoreviser
+    $ pyton NanoReviser_train.py -d ./unitest/training_data/fast5/ -r ./unitest/training_data/reference.fasta -o ./unitest_training_results/ -S unitest -b 256 -w 13 -e 50 -c 0 --validation_slipt=0.01 --model_type=both
+
+There would be four result files in ./unitest_training_results/
+(1)unitest_win13_50ep_model1_history.csv, which records the training history of NanoReviser model1
+(2)unitest_win13_50ep_model1_summery.json, which records the paramaters of of NanoReviser model1
+(3)unitest_win13_50ep_model2_history.csv, which records the training history of NanoReviser model2
+(4)unitest_win13_50ep_model2_summery.json, which records the paramaters of of NanoReviser model2
 
 ## Citation
 
