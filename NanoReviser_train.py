@@ -29,7 +29,7 @@ from nanorevutils.nanorevtrainutils import train_preprocessing, get_trainning_in
 
 def get_args():
     optParser = OptionParser(usage="%prog [-d] [-o]", version="%prog 1.0",
-                             description="An Error-correction Tool for Nanopore Sequencing Based on a Deep Learning Algorithm")
+                             description="An Training Tool for NanoReviser")
     optParser.add_option('-d', '--fast5_base_dir', action='store', type="string",
                          default='./unitest/training_data/fast5/',
                          dest='fast5_base_dir',
@@ -165,9 +165,7 @@ def summary_generate(args, start_t):
         'epochs':args.epochs,
         'batch_size':args.batch_size,
         'validation_split':args.validation_split,
-        'start_time':start_t,
-        'end_time':end_t,
-        'training_time':str(start_t-end_t)+' seconds',
+        'training_time':str(int(end_t-start_t))+' seconds',
     }
     return summary
 
@@ -249,7 +247,7 @@ if __name__ == '__main__':
                                                                                                      'model2')
             att_model_train2.save_weights(model2_train_fn)
             att_model_predict2.save_weights(model2_pre_fn)
-            model2_summary = summary_generate(ar_args)
+            model2_summary = summary_generate(ar_args, m2_start_t)
             write_sumery_file(dict(history2.history), model2_summary, model2_history_fn, model2_summary_fn)
             if not ar_args.test_mode:
                 print('[p:::] model 2 completed......')
