@@ -1,25 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0a698eef-a67e-4107-a0b1-e94fd08d2514" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/unitest_log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NanoReviser_train.py" beforeDir="false" afterPath="$PROJECT_DIR$/NanoReviser_train.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unitest.sh" beforeDir="false" afterPath="$PROJECT_DIR$/unitest.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unitest/check_nanoreviser.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/unitest/test_data/fast5/ZF_screen28_20170130_FN_MN19061_sequencing_run_sample_id_98490_ch10_read5252_strand.fast5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/unitest/test_data/fast5/ZF_screen28_20170130_FN_MN19061_sequencing_run_sample_id_98490_ch10_read6297_strand.fast5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/unitest/test_data/fast5/ZF_screen28_20170130_FN_MN19061_sequencing_run_sample_id_98490_ch117_read6465_strand.fast5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/unitest/test_data/fast5/ZF_screen28_20170130_FN_MN19061_sequencing_run_sample_id_98490_ch13_read2251_strand.fast5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/unitest/test_data/fast5/ZF_screen28_20170130_FN_MN19061_sequencing_run_sample_id_98490_ch141_read5436_strand.fast5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/unitest/training_data/fast5/ZF_screen28_20170130_FN_MN19061_sequencing_run_sample_id_98490_ch10_read5252_strand.fast5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/unitest/training_data/fast5/ZF_screen28_20170130_FN_MN19061_sequencing_run_sample_id_98490_ch10_read6297_strand.fast5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/unitest/training_data/fast5/ZF_screen28_20170130_FN_MN19061_sequencing_run_sample_id_98490_ch117_read6465_strand.fast5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/unitest/training_data/fast5/ZF_screen28_20170130_FN_MN19061_sequencing_run_sample_id_98490_ch13_read2251_strand.fast5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/unitest/training_data/fast5/ZF_screen28_20170130_FN_MN19061_sequencing_run_sample_id_98490_ch141_read5436_strand.fast5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/unitest/training_data/reference.fasta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/unitest/training_data/reference.fasta.gmidx" beforeDir="false" />
-    </list>
+    <list default="true" id="0a698eef-a67e-4107-a0b1-e94fd08d2514" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,31 +12,12 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/nanoreviser$check_nanoreviser.coverage" NAME="check_nanoreviser Coverage Results" MODIFIED="1587106194804" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/unitest" />
   </component>
-  <component name="DockManager">
-    <window id="2">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file leaf-file-name="NanoReviser.py" pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/NanoReviser.py">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="153">
-                    <caret line="214" column="71" selection-start-line="214" selection-start-column="21" selection-end-line="214" selection-end-column="71" />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
       <file leaf-file-name="NanoReviser_train.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/NanoReviser_train.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="364">
+            <state relative-caret-position="340">
               <caret line="223" column="47" selection-start-line="223" selection-start-column="47" selection-end-line="223" selection-end-column="47" />
             </state>
           </provider>
@@ -219,12 +182,12 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32960895" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32960895" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.38268158" />
       <window_info anchor="right" id="Remote Host" order="3" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49688148" visible="true" weight="0.25451806" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49688148" visible="true" weight="0.25451806" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32914925" />
@@ -436,7 +399,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/NanoReviser_train.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
+        <state relative-caret-position="340">
           <caret line="223" column="47" selection-start-line="223" selection-start-column="47" selection-end-line="223" selection-end-column="47" />
         </state>
       </provider>
