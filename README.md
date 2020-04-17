@@ -221,7 +221,7 @@ And two model files in ./model/unitest:
 ## Citation
 
 
-Luotong Wang, Li Qu, Longshu Yang, Yiying Wang Huaiqiu Zhu; NanoReviser: An Error-correction Tool for Nanopore Sequencing Based on a Deep Learning Algorithm
+Luotong Wang, Li Qu, Longshu Yang, Yiying Wang and Huaiqiu Zhu\*; NanoReviser: An Error-correction Tool for Nanopore Sequencing Based on a Deep Learning Algorithm
 
 
 ## Contact
