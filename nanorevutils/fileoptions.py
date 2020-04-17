@@ -15,6 +15,7 @@ import shutil
 import json
 import time
 from albacore.path_utils import get_default_path
+import pandas as pd
 
 
 def check_path(my_path):

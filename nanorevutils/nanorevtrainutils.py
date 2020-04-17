@@ -63,7 +63,8 @@ def handel_input_fast5(fast5_fn_sg, args, genome_index):
     try:
         read_fasta_fn = args.temp_dir + fast5_fn_sg.split('.')[0] + '.fasta'
         prep_read_fasta(fast5_fn, read_fasta_fn, event_bases)
-        print('[p:::] ' + fast5_fn_sg.split('.')[0] + '.fasta was saved for mapping......')
+        if not args.test_mode:
+            print('[p:::] ' + fast5_fn_sg.split('.')[0] + '.fasta was saved for mapping......')
 
         num_align_ps = 1
         out_fn = args.temp_dir + fast5_fn_sg.split('.')[0] + '.sam'
@@ -71,7 +72,8 @@ def handel_input_fast5(fast5_fn_sg, args, genome_index):
                                                  num_align_ps)
 
         sam_records = align_to_genome(out_fn, args.graphmap_exe, graphmap_options)
-        print('[p:::] ' + fast5_fn_sg.split('.')[0] + '.sam has been loaded......')
+        if not args.test_mode:
+            print('[p:::] ' + fast5_fn_sg.split('.')[0] + '.sam has been loaded......')
 
     except Exception as e:
         raise RuntimeError('！！！[Error] ' + fast5_fn_sg.split('.')[0] + str(e))
@@ -79,7 +81,8 @@ def handel_input_fast5(fast5_fn_sg, args, genome_index):
         readVals, refVals, mapVals, genomeLoc, \
         start_clipped_bases, end_clipped_bases = parse_sam_record(sam_records,
                                                                   genome_index)
-        print('[p:::] ' + fast5_fn_sg.split('.')[0] + '.sam is mapping......')
+        if not args.test_mode:
+            print('[p:::] ' + fast5_fn_sg.split('.')[0] + '.sam is mapping......')
 
         starts_rel_to_read, event_length, read_start_rel_to_raw, raw_mean, raw_std = \
             fix_raw_starts_for_clipped_bases(int(start_clipped_bases),
