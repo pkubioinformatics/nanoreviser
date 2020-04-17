@@ -211,6 +211,13 @@ There would be four result files in ./unitest_training_results/:
 
   (4)  **unitest_win13_50ep_model2_summery.json** (Paramaters of of NanoReviser model2)
 
+And two model files in ./model/unitest:
+
+  (1)  **unitest_win13_50ep_model1.h5** 
+
+  (2)  **unitest_win13_50ep_model2.h5** 
+
+
 ## Citation
 
 
