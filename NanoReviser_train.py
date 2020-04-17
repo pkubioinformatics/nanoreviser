@@ -23,7 +23,7 @@ import pandas as pd
 
 from nanorevutils.nanolog import logger_config
 from albacore.path_utils import get_default_path
-from nanorevutils.fileoptions import check_path, dict_to_json_write_file
+from nanorevutils.fileoptions import check_path, summary_generate, write_sumery_file, model_fn_generate
 from nanorevutils.lstmmodel import get_model1, get_model2
 from nanorevutils.nanorevtrainutils import train_preprocessing, get_trainning_input
 
@@ -122,58 +122,13 @@ def this_folder():
 default_path = get_default_path(this_folder())
 
 
-def model_fn_generate(args, model_tag):
-    model_train_fn = args.train_model_dir + \
-                 'train_'+str(args.species) + \
-                 '_win' + str(args.window_size) + '_' + \
-                 str(args.epochs) +'ep_' + \
-                 str(model_tag) + '.h5'
-    model_predict_fn_sg = args.model_dir + \
-                 str(args.species) + \
-                 '_win' + str(args.window_size) + '_' +  \
-                 str(args.epochs) +'ep_' + \
-                 str(model_tag)
-    model_predict_fn = model_predict_fn_sg + '.h5'
-    fn_sg = str(args.species) + \
-            '_win' + str(args.window_size) + '_' +  \
-            str(args.epochs) +'ep_' + \
-            str(model_tag)
-    model_history_fn = args.output_dir + fn_sg+'_hisroty.csv'
-    model_summary_fn = args.output_dir + fn_sg + '_parameters.json'
-    return model_predict_fn, model_train_fn, model_history_fn, model_summary_fn
-
-
-def write_sumery_file(history, summary, history_fn, summary_fn):
-    try:
-        dict_to_json_write_file(summary, summary_fn)
-    except Exception as e:
-        raise RuntimeError('！！！[Error] saveing summary hisroty result ', e)
-    try:
-        pd.DataFrame(history).to_csv(history_fn, index=False)
-    except Exception as e:
-        raise RuntimeError('！！！[Error] saveing training hisroty result ',e)
-
-
-def summary_generate(args, start_t):
-    end_t = time.time()
-    summary={
-        'model_type':args.model_type,
-        'species':args.species,
-        'input_file':args.fast5_base_dir,
-        'read_counts':args.read_counts,
-        'window_size':args.window_size,
-        'epochs':args.epochs,
-        'batch_size':args.batch_size,
-        'validation_split':args.validation_split,
-        'training_time':str(int(end_t-start_t))+' seconds',
-    }
-    return summary
-
-
 if __name__ == '__main__':
     ar_args=get_args()
     if ar_args.test_mode:
         logger = logger_config(log_path='./unitest/unitest_log.txt', logging_name='unitest')
+        ar_args.epochs=2
+        ar_args.read_counts=1
+        ar_args.window_size=5
     try:
         start_time = time.time()
         try:
@@ -258,7 +213,11 @@ if __name__ == '__main__':
         try:
             end_time = time.time()
             if not ar_args.test_mode:
-                print('[s:::] NanoReviser time consuming:%.2f seconds' % (end_time - start_time))
+                print('[s:::] The training time of NanoReviser_train is :%.2f seconds' % (end_time - start_time))
+            else:
+                logger.info("Congratulations, NanoReviser_train is installed properly")
+                shutil.rmtree(ar_args.output_dir)
+                shutil.rmtree(ar_args.model_dir)
             shutil.rmtree(ar_args.temp_dir)
         except Exception as e:
             print('！！！[Error] remove tmp dir ' + ar_args.temp_dir + e)
