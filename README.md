@@ -201,15 +201,15 @@ Please note that the training process of NanoReviser_train could take quite a lo
     $ conda activate nanorev  #activate the python enviroment for nanoreviser
     $ pyton NanoReviser_train.py -d ./unitest/training_data/fast5/ -r ./unitest/training_data/reference.fasta -o ./unitest_training_results/ -S unitest -b 256 -w 13 -e 50 -c 0 --validation_slipt=0.01 --model_type=both
 
-There would be four result files in ./unitest_training_results/
+There would be four result files in ./unitest_training_results/:
 
-  (1)**unitest_win13_50ep_model1_history.csv** (Training history of NanoReviser model1)
+  (1)  **unitest_win13_50ep_model1_history.csv** (Training history of NanoReviser model1)
 
-  (2)**unitest_win13_50ep_model1_summery.json** (Paramaters of of NanoReviser model1)
+  (2)  **unitest_win13_50ep_model1_summery.json** (Paramaters of of NanoReviser model1)
 
-  (3)**unitest_win13_50ep_model2_history.csv** (Training history of NanoReviser model2)
+  (3)  **unitest_win13_50ep_model2_history.csv** (Training history of NanoReviser model2)
 
-  (4)**unitest_win13_50ep_model2_summery.json** (Paramaters of of NanoReviser model2)
+  (4)  **unitest_win13_50ep_model2_summery.json** (Paramaters of of NanoReviser model2)
 
 ## Citation
 
