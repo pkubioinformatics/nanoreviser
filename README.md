@@ -92,7 +92,7 @@ An ONT basecalling reviser based on deep learning
            python NanoReviser.py [options] -d <fast5_files> -o <output_path> -f <output_format, default=fasta>
 
            [example]
-           python NanoReviser.py -d ./unitest/test_data/fast5/ -o ./unitest/nanorev_output/ -f fasta
+           python NanoReviser.py -d ./unitest/test_data/fast5/ -o ./unitest/nanorev_output/ -f fasta -S ecoli
 
 	usage: 
            python NanoReviser.py [options]
@@ -168,12 +168,12 @@ A training tools for generation model files for NanoReviser
 For revising the fast5 files in ./unitest/test_data/fast5/ in order to get fasta files,the command line would be:
 
     $ conda activate nanorev  #activate the python enviroment for nanoreviser
-    $ pyton NanoReviser.py -d ./unitest/test_data/fast5/ -o ./unitest_nanorev_results/ -F fasta
+    $ pyton NanoReviser.py -d ./unitest/test_data/fast5/ -o ./unitest_nanorev_results/ -S ecoli -F fasta
 
 For revising the fast5 files in ./unitest/test_data/fast5/ in order to get fastq files,the command line would be:
 
     $ conda activate nanorev  #activate the python enviroment for nanoreviser
-    $ pyton NanoReviser.py -d ./unitest/test_data/fast5/ -o ./unitest_nanorev_results/ -F fastq
+    $ pyton NanoReviser.py -d ./unitest/test_data/fast5/ -o ./unitest_nanorev_results/ -S ecoli -F fastq
 
 Please run the following command in oder to get the entire fasta or fastq file contains all reads in fasta5's dir:
 
@@ -202,9 +202,13 @@ Please note that the training process of NanoReviser_train could take quite a lo
     $ pyton NanoReviser_train.py -d ./unitest/training_data/fast5/ -r ./unitest/training_data/reference.fasta -o ./unitest_training_results/ -S unitest -b 256 -w 13 -e 50 -c 0 --validation_slipt=0.01 --model_type=both
 
 There would be four result files in ./unitest_training_results/
+
 (1)unitest_win13_50ep_model1_history.csv, which records the training history of NanoReviser model1
+
 (2)unitest_win13_50ep_model1_summery.json, which records the paramaters of of NanoReviser model1
+
 (3)unitest_win13_50ep_model2_history.csv, which records the training history of NanoReviser model2
+
 (4)unitest_win13_50ep_model2_summery.json, which records the paramaters of of NanoReviser model2
 
 ## Citation
