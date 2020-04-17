@@ -71,11 +71,11 @@ For linux just with cpu
 
 
 
-Please run the unitest in oder to make sure NanoReviser installed properly.
+Please run the unitest to make sure NanoReviser installed properly.
 
     $ sh unitest.sh
 
-If NanoReviser.py and NanoReviser_train.py are installed properly, you will get
+If both NanoReviser.py and NanoReviser_train.py are available, you will get
 
      Congratulations, please have fun with NanoReviser :)
     
@@ -164,12 +164,12 @@ A training tools for generation model files for NanoReviser
 
 **NanoReviser.py** : An ONT basecalling reviser based on deep learning
 
-For revising the fast5 files in ./unitest/test_data/fast5/ in order to get .fasta files,the command line would be:
+For revising the fast5 files in ./unitest/test_data/fast5/ in order to get fasta files,the command line would be:
 
     $ conda activate nanorev  #activate the python enviroment for nanoreviser
     $ pyton NanoReviser.py -d ./unitest/test_data/fast5/ -o ./unitest_nanorev_results/ -F fasta
 
-For revising the fast5 files in ./unitest/test_data/fast5/ in order to get .fastq files,the command line would be:
+For revising the fast5 files in ./unitest/test_data/fast5/ in order to get fastq files,the command line would be:
 
     $ conda activate nanorev  #activate the python enviroment for nanoreviser
     $ pyton NanoReviser.py -d ./unitest/test_data/fast5/ -o ./unitest_nanorev_results/ -F fastq
@@ -192,7 +192,8 @@ For training NanoReviser by data in ./unitest/training_data/fast5/ and reference
     $ conda activate nanorev  #activate the python enviroment for nanoreviser
     $ pyton NanoReviser_train.py -d ./unitest/training_data/fast5/ -r ./unitest/training_data/reference.fasta -o ./unitest_training_results/ -S unitest
 
-This command will generate two model files in ./model/unitest and two summery files in ./unitest_training_data/.
+This command will generate two model files in ./model/unitest and for summery files in ./unitest_training_data/.
+
 Please note that the training process of NanoReviser_train could take quite a long time, we highly recommend to use screen command to run the command as follow:
 
     $ screen -S nanorev_train
