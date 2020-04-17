@@ -22,7 +22,9 @@ from keras.utils import plot_model
 import keras.backend as K
 from nanorevutils.nanorevcnn import identity_Block
 
+
 label_to_base = {5:'A', 4:'G', 3:'T', 2:'C',1:'-', 0:'D'}
+
 
 def prep_read_fasta(fast5_fn, read_fasta_fn, bases):
     """
@@ -82,6 +84,24 @@ def get_dna_qul(temp_dir):
     return dna_seq, dna_qul
 
 
+def get_dna_qul_2(temp_dir):
+    dna_seq = ''
+    dna_qul = ''
+    temp_dir = os.path.join(temp_dir)
+    for file in os.listdir(temp_dir):
+        if file.endswith('.fastq'):
+            file = os.path.join(temp_dir,file)
+            # print(file)
+            with open(file, 'r') as out_fp:
+                out_fp.seek(0)
+                fastq_output = out_fp.readlines()
+                # print(len(fastq_output))
+                dna_seq=fastq_output[1][13:-13]
+                dna_qul=fastq_output[3][13:-13]
+        else:
+            continue
+    return dna_seq, dna_qul
+
 def get_base_1(event_bases, y_pre, y_pre2):
     result = list()
     y_pre2=y_pre2-1
@@ -137,8 +157,9 @@ def get_base_l(default_path, fast5_fn, temp_dir, event_bases=0, y_pred=0, y_pred
     # assert (len(result_DNA) == len(result_qulity))
     return result_DNA, result_qulity
 
-def prep_basecaller_options(read_fn, out_fn, config_fn='./ont-guppy-cpu/data/dna_r9.4.1_450bps_fast.cfg'):
-
+def prep_basecaller_options(read_fn, out_fn, config_fn='./nanorevutils/utils/data/dna_r9.4.1_450bps_hac.cfg'):
+    # nanorev_path = str(os.getcwd())
+    # print(nanorev_path)
     return ['--input_path',  read_fn, '--save_path', out_fn, '--config', config_fn ]
 
 
@@ -148,9 +169,10 @@ def get_basecaller_result(file_name, basecaller_options, basecaller_exe='./nanor
     stdout_sink = FNULL
     exitStatus = call([basecaller_exe, ] + basecaller_options, stdout=stdout_sink, stderr=FNULL)
     FNULL.close()
-    print(file_name, 'has been basecalled......')
+    # print(file_name, 'has been basecalled......')
 
     return exitStatus
+
 
 def get_base_G(fast5_fn, temp_dir, event_bases=0, y_pred=0, y_pred2=0):
     result_DNA = ''
@@ -159,10 +181,12 @@ def get_base_G(fast5_fn, temp_dir, event_bases=0, y_pred=0, y_pred2=0):
     basecaller_options = prep_basecaller_options(input_dir, temp_dir)
     # print(basecaller_options)
     if get_basecaller_result(fast5_fn,basecaller_options)==0:
-        result_DNA, result_qulity = get_dna_qul(temp_dir)
+        # print(os.listdir(temp_dir))
+        result_DNA, result_qulity = get_dna_qul_2(temp_dir)
+       # print(len(result_DNA), len(result_qulity))
     else:
         raise NotImplementedError('Error in revising file, like a broken .fast5 file.')
-    assert (result_DNA != '')
+    # assert (result_DNA != '')
     # assert (len(result_DNA) == len(result_qulity))
     return result_DNA, result_qulity
 

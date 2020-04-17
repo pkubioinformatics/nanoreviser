@@ -99,7 +99,7 @@ def this_folder():
         return os.path.dirname(sys.executable)
     else:
         return os.path.dirname(__file__)
-default_path = get_default_path(this_folder())
+# default_path = get_default_path(this_folder())
 
 
 def provide_fasta(name, fast5_fn_sg, args):
@@ -131,7 +131,8 @@ def provide_fasta(name, fast5_fn_sg, args):
     if args.output_format=='fasta':
         try:
             # y_read, y_qul = get_base_l(default_path, fast5_fn, basecall_tmp_dir, model1, model2, 0)
-            y_read, y_qul = get_base_l(fast5_fn, basecall_tmp_dir, model1, model2, 0)
+            y_read, y_qul = get_base_G(fast5_fn, basecall_tmp_dir, model1, model2, 0)
+            print(len(y_read))
             out_fasta_fn = args.output_dir + fast5_fn_sg.split('.')[0] + '_out.fasta'
             if not os.path.exists(args.output_dir):
                 os.makedirs(args.output_dir)
@@ -150,7 +151,7 @@ def provide_fasta(name, fast5_fn_sg, args):
     elif args.output_format=='fastq':
         try:
             # y_read, y_qul = get_base_l(default_path, fast5_fn, basecall_tmp_dir, model1, model2, 0)
-            y_read, y_qul = get_base_l(fast5_fn, basecall_tmp_dir, model1, model2, 0)
+            y_read, y_qul = get_base_G(fast5_fn, basecall_tmp_dir, model1, model2, 0)
             out_fastq_fn = args.output_dir + fast5_fn_sg.split('.')[0] + '_out.fastq'
             if not os.path.exists(args.output_dir):
                 os.makedirs(args.output_dir)
