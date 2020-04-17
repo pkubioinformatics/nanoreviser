@@ -59,7 +59,7 @@ You will create an eviroment named nanorev for NanoReviser and install all depen
 
 For linux with gpu 
     
-    $ conda env create -n nanorev /**Your_Path_to_Anaconda**/envs/nanorev/ -f ./enviroment/NanoReviser.yaml 
+      $ conda env create -n nanorev /**Your_Path_to_Anaconda**/envs/nanorev/ -f ./enviroment/NanoReviser.yaml 
 	  $ conda activate nanorev
  
 
