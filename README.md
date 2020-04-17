@@ -73,6 +73,7 @@ For linux just with cpu
 
 Please run the unitest to make sure NanoReviser installed properly.
 
+    $ conda activate nanorev
     $ sh unitest.sh
 
 If both NanoReviser.py and NanoReviser_train.py are available, you will get
