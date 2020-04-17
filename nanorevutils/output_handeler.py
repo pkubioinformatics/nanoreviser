@@ -75,8 +75,8 @@ def get_dna_qul(temp_dir):
                 out_fp.seek(0)
                 fastq_output = out_fp.readlines()
                 # print(len(fastq_output))
-                dna_seq=fastq_output[1]
-                dna_qul=fastq_output[3]
+                dna_seq=fastq_output[1][13:-13]
+                dna_qul=fastq_output[3][13:-13]
         else:
             continue
     return dna_seq, dna_qul
