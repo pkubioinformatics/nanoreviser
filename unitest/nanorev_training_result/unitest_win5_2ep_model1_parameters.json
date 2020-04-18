@@ -1,0 +1,1 @@
+{"model_type": "both", "species": "unitest", "input_file": "./unitest/training_data/fast5/", "read_counts": 1, "window_size": 5, "epochs": 2, "batch_size": 512, "validation_split": 0.01, "training_time": "97 seconds"}

@@ -34,7 +34,7 @@ Nanopore sequencing is regarded as one of the most promising third-generation se
 
 ## Version
 
-+ NanoReviser 1.0 (Tested on Linux_64, including CentOS 6.5 and Ubuntu 16.04)
++ NanoReviser 1.0 (Tested on MacOS 10.11 and Linux_64, including CentOS 6.5 and Ubuntu 16.04)
 
 
 ## Installation
@@ -69,7 +69,10 @@ For linux just with cpu
 	  $ conda activate nanorev
 	  $ conda install tensorflow==1.12.0
 
+For macOS with cpu 
 
+      $ conda env create -n nanorev /**Your_Path_to_Anaconda**/envs/nanorev/ -f ./enviroment/NanoReviser_macOS.yaml 
+    $ conda activate nanorev
 
 Please run the unitest to make sure NanoReviser installed properly.
 

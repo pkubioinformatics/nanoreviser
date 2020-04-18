@@ -1,0 +1,10 @@
+2020-04-18 13:23:39,806 - unitest - INFO - Congratulations, NanoReviser is installed properly
+2020-04-18 13:23:39,806 - unitest - INFO - Congratulations, NanoReviser is installed properly
+2020-04-18 13:23:40,520 - unitest - INFO - Congratulations, NanoReviser is installed properly
+2020-04-18 13:23:40,520 - unitest - INFO - Congratulations, NanoReviser is installed properly
+2020-04-18 13:23:53,771 - unitest - INFO - Congratulations, NanoReviser is installed properly
+2020-04-18 13:23:53,771 - unitest - INFO - Congratulations, NanoReviser is installed properly
+2020-04-18 13:23:57,921 - unitest - INFO - Congratulations, NanoReviser is installed properly
+2020-04-18 13:23:57,921 - unitest - INFO - Congratulations, NanoReviser is installed properly
+2020-04-18 13:24:29,707 - unitest - INFO - Congratulations, NanoReviser is installed properly
+2020-04-18 13:24:29,707 - unitest - INFO - Congratulations, NanoReviser is installed properly
