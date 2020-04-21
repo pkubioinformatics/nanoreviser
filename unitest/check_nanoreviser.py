@@ -32,10 +32,11 @@ if __name__ == '__main__':
         if not (tag1=='INFO' and tag2=='Congratulations'):
             tag = 1
             delet_files(log_fn)
-            print('Error!!! NanoReviser is not properly installed ! plese check your platform! ')
             break
 
     if tag==0:
         delet_files(log_fn)
         print("Congratulations, please have fun with NanoReviser :)")
+    else:
+        print('Error!!! NanoReviser is not properly installed ! plese check your platform! ')
 
