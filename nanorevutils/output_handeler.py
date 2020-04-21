@@ -157,6 +157,12 @@ def get_base_l(default_path, fast5_fn, temp_dir, event_bases=0, y_pred=0, y_pred
     return result_DNA, result_qulity
 
 def prep_basecaller_options(read_fn, out_fn, config_fn='./nanorevutils/utils/data/'):
+    os.system("uname -a>a.txt")
+    with open("a.txt", 'r') as af:
+        tmp = str(af.readlines()[0])
+        tmp = tmp.split()[0]
+        if tmp == "Darwin":
+            config_fn = './nanorevutils/mac_utils/data/'
     config_ff=config_fn+config_name
     return ['--input_path',  read_fn, '--save_path', out_fn, '--config', config_ff ]
 
@@ -168,6 +174,7 @@ def get_basecaller_result(file_name, basecaller_options, basecaller_exe='./nanor
         tmp =tmp.split()[0]
         if tmp=="Darwin":
             basecaller_exe = './nanorevutils/mac_utils/bin/basecaller'
+
     os.remove("a.txt")
     from subprocess import call
     FNULL = open(os.devnull, 'w')
