@@ -99,7 +99,7 @@ def this_folder():
         return os.path.dirname(sys.executable)
     else:
         return os.path.dirname(__file__)
-# default_path = get_default_path(this_folder())
+default_path = get_default_path(this_folder())
 
 
 def provide_fasta(name, fast5_fn_sg, args):
