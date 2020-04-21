@@ -163,7 +163,7 @@ def prep_basecaller_options(read_fn, out_fn, config_fn='./nanorevutils/utils/dat
     return ['--input_path',  read_fn, '--save_path', out_fn, '--config', config_fn ]
 
 
-def get_basecaller_result(file_name, basecaller_options, basecaller_exe='./nanorevutils/utils/bin/guppy_basecaller'):
+def get_basecaller_result(file_name, basecaller_options, basecaller_exe='./nanorevutils/utils/bin/basecaller'):
     from subprocess import call
     FNULL = open(os.devnull, 'w')
     stdout_sink = FNULL
