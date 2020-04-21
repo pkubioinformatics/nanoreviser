@@ -158,8 +158,6 @@ def get_base_l(default_path, fast5_fn, temp_dir, event_bases=0, y_pred=0, y_pred
     return result_DNA, result_qulity
 
 def prep_basecaller_options(read_fn, out_fn, config_fn='./nanorevutils/utils/data/dna_r9.4.1_450bps_hac.cfg'):
-    nanorev_path = str(os.getcwd())
-    # print(nanorev_path)
     return ['--input_path',  read_fn, '--save_path', out_fn, '--config', config_fn ]
 
 
@@ -169,8 +167,6 @@ def get_basecaller_result(file_name, basecaller_options, basecaller_exe='./nanor
     stdout_sink = FNULL
     exitStatus = call([basecaller_exe, ] + basecaller_options, stdout=stdout_sink, stderr=FNULL)
     FNULL.close()
-    # print(file_name, 'has been basecalled......')
-
     return exitStatus
 
 
@@ -179,15 +175,11 @@ def get_base_G(fast5_fn, temp_dir, event_bases=0, y_pred=0, y_pred2=0):
     result_qulity = ''
     input_dir = temp_dir
     basecaller_options = prep_basecaller_options(input_dir, temp_dir)
-    # print(basecaller_options)
     if get_basecaller_result(fast5_fn, basecaller_options)==0:
-        # print(os.listdir(temp_dir))
         result_DNA, result_qulity = get_dna_qul_2(temp_dir)
-        # print(len(result_DNA), len(result_qulity))
     else:
         raise NotImplementedError('Error in revising file, like a broken .fast5 file.')
-    # assert (result_DNA != '')
-    # assert (len(result_DNA) == len(result_qulity))
+
     return result_DNA, result_qulity
 
 
