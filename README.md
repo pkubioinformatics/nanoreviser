@@ -103,7 +103,7 @@ An ONT basecalling reviser based on deep learning
            python NanoReviser.py [options] -d <fast5_files> -o <output_path> -f <output_format, default=fasta>
 
            [example]
-           python NanoReviser.py -d ./unitest/test_data/fast5/ -o ./unitest/nanorev_output/ -f fasta -S ecoli
+           python NanoReviser.py -d ./unitest/test_data/fast5/ -o ./unitest/nanorev_output/ -F fastq -S ecoli
 
 	  usage: 
            python NanoReviser.py [options]
