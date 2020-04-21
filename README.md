@@ -24,7 +24,7 @@ Nanopore sequencing is regarded as one of the most promising third-generation se
 ## Requirements
 
 + [Anaconda](https://www.anaconda.com/)
-+ [libh5py, version >= 1.8.12](https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8/hdf5-1.8.12/obtain51812.html)
++ [h5py, version >= 1.8.12](http://www.hdfgroup.org/HDF5/)
 + [Python version >= 3.6.9](https://www.python.org/)
 + [numpy version >= 1.17.3](http://www.numpy.org/)
 + [pandas, version >= 0.25.0](http://pandas.pydata.org/)
@@ -34,7 +34,7 @@ Nanopore sequencing is regarded as one of the most promising third-generation se
 
 ## Version
 
-+ NanoReviser 1.0 (Tested on MacOS 10.11 and Linux_64, including CentOS 6.5 and Ubuntu 16.04)
++ NanoReviser 1.0 (Tested on MacOS 10.11 and Linux_64, including CentOS 7 and Ubuntu 18.04)
 
 
 ## Installation
@@ -56,6 +56,13 @@ You will create an eviroment named nanorev for NanoReviser and install all depen
 
 **Note : you need to replace the path where you installed anaconda**
 
+For Linix Centos 7 system:
+    
+     $ sudo yum install https://download-ib01.fedoraproject.org/pub/epel/7/x86_64/Packages/h/hdf5-1.8.12-11.el7.x86_64.rpm
+
+For Linux Ubuntu 16.4 system:
+
+     $sudo apt-get install libhdf5-serial-dev hdf5-tools
 
 For linux with gpu 
 
