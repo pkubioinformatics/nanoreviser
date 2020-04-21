@@ -103,7 +103,7 @@ An ONT basecalling reviser based on deep learning
            python NanoReviser.py [options] -d <fast5_files> -o <output_path> -f <output_format, default=fasta>
 
            [example]
-           python NanoReviser.py -d ./unitest/test_data/fast5/ -o ./unitest/nanorev_output/ -F fastq -S ecoli
+           python NanoReviser.py -d ./unitest/test_data/fast5/ -o ./unitest/nanorev_output/ -F fasta -S ecoli
 
 	  usage: 
            python NanoReviser.py [options]
@@ -116,19 +116,13 @@ An ONT basecalling reviser based on deep learning
     -d FAST5_BASE_DIR, --fast5_base_dir=FAST5_BASE_DIR     path to the fast5 files
     -o OUTPUT_DIR, --output_dir=OUTPUT_DIR                 path to store the output files
     -S SPECIES, --species=SPECIES                          species model to load which located in ./model/, 
-                                                           default is human
-    --model1_predict_dir=MODEL1_PREDICT_DIR                model dirs for model1
-    --model2_predict_dir=MODEL2_PREDICT_DIR                model dirs for model2
-    -f OUTPUT_FORMAT, --output_format=OUTPUT_FORMAT        format of the output files, default is fasta
+                                                           default is "human"
+    -F OUTPUT_FORMAT, --output_format=OUTPUT_FORMAT        format of the output files, default is fasta
     --thread=THREAD                                        thread, default is 100
     -t TEMP_DIR, --tmp_dir=TEMP_DIR                        path to the tmp dir, which is used to store the 
                                                            preprocessing files
     -e FAILED_READS_FILENAME                               document to log the failed reads, default is
                                                            failed_read.txt
-    --basecall_group=BASECALL_GROUP                        attrs for finding the events file in fast5 file, 
-                                                           default is Basecall_1D_000
-    --basecall_subgroup=BASECALL_SUBGROUP                  attrs for finding the events file in fast5 file,
-                                                           default is BaseCalled_template
     
 
 
@@ -161,14 +155,7 @@ A training tools for generation model files for NanoReviser
     --model_type=MODEL_TYPE                                'both', 'model1' or 'model2', default is 'both'
     --mapper_exe=MAPPER_EXE                                the align tool for generate the lable of training 
                                                            data, default is 'graphmap'
-    -t TEMP_DIR, --tmp_dir=TEMP_DIR                        path to the tmp dir, which is used to store the 
-                                                           preprocessing files
-    -f FAILED_READS_FILENAME                               document to log the failed reads, default is
-                                                           failed_read.txt
-    --basecall_group=BASECALL_GROUP                        attrs for finding the events file in fast5 file, 
-                                                           default is Basecall_1D_000
-    --basecall_subgroup=BASECALL_SUBGROUP                  attrs for finding the events file in fast5 file,
-                                                           default is BaseCalled_template
+
 
 ## Example
 
