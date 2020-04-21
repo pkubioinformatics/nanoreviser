@@ -24,12 +24,12 @@ Nanopore sequencing is regarded as one of the most promising third-generation se
 ## Requirements
 
 + [Anaconda](https://www.anaconda.com/)
++ [libh5py, version >= 1.8.12](https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8/hdf5-1.8.12/obtain51812.html)
 + [Python version >= 3.6.9](https://www.python.org/)
 + [numpy version >= 1.17.3](http://www.numpy.org/)
 + [pandas, version >= 0.25.0](http://pandas.pydata.org/)
 + [TenserFlow, version >= 1.12.0](https://www.tensorflow.org/)
 + [Keras, version 1.2.2](https://https://github.com/keras-team/keras/)
-+ [h5py, version >= 2.5.0](http://www.h5py.org/)
 + [GraphMap, version >= 0.5.2](https://github.com/isovic/graphmap/)
 
 ## Version
@@ -72,7 +72,7 @@ For linux just with cpu
 For macOS with cpu 
 
       $ conda env create -n nanorev /**Your_Path_to_Anaconda**/envs/nanorev/ -f ./enviroment/NanoReviser_macOS.yaml 
-    $ conda activate nanorev
+      $ conda activate nanorev
 
 Please run the unitest to make sure NanoReviser installed properly.
 
