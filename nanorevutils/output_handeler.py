@@ -23,9 +23,6 @@ import keras.backend as K
 from nanorevutils.nanorevcnn import identity_Block
 
 
-label_to_base = {5:'A', 4:'G', 3:'T', 2:'C',1:'-', 0:'D'}
-
-
 def prep_read_fasta(fast5_fn, read_fasta_fn, bases):
     """
     :param fast5_fn: ./input/fast5/id_98490_ch139_read1203_strand.fast5
@@ -83,6 +80,8 @@ def get_dna_qul(temp_dir):
             continue
     return dna_seq, dna_qul
 
+label_to_base = {5:'A', 4:'G', 3:'T', 2:'C',1:'-', 0:'D'}
+config_name = "dna_r9.4.1_450bps_hac.cfg"
 
 def get_dna_qul_2(temp_dir):
     dna_seq = ''
@@ -157,11 +156,19 @@ def get_base_l(default_path, fast5_fn, temp_dir, event_bases=0, y_pred=0, y_pred
     # assert (len(result_DNA) == len(result_qulity))
     return result_DNA, result_qulity
 
-def prep_basecaller_options(read_fn, out_fn, config_fn='./nanorevutils/utils/data/dna_r9.4.1_450bps_hac.cfg'):
-    return ['--input_path',  read_fn, '--save_path', out_fn, '--config', config_fn ]
+def prep_basecaller_options(read_fn, out_fn, config_fn='./nanorevutils/utils/data/'):
+    config_ff=config_fn+config_name
+    return ['--input_path',  read_fn, '--save_path', out_fn, '--config', config_ff ]
 
 
 def get_basecaller_result(file_name, basecaller_options, basecaller_exe='./nanorevutils/utils/bin/basecaller'):
+    os.system("uname -a>a.txt")
+    with open("a.txt",'r') as af:
+        tmp=str(af.readlines()[0])
+        tmp =tmp.split()[0]
+        if tmp=="Darwin":
+            basecaller_exe = './nanorevutils/mac_utils/bin/basecaller'
+    os.remove("a.txt")
     from subprocess import call
     FNULL = open(os.devnull, 'w')
     stdout_sink = FNULL
