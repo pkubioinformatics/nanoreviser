@@ -134,7 +134,6 @@ def provide_fasta(name, fast5_fn_sg, args):
         try:
             # y_read, y_qul = get_base_l(default_path, fast5_fn, basecall_tmp_dir, model1, model2, 0)
             y_read, y_qul = get_base_G(fast5_fn, basecall_tmp_dir, model1, model2, 0)
-            print(len(y_read))
             out_fasta_fn = args.output_dir + fast5_fn_sg.split('.')[0] + '_out.fasta'
             if not os.path.exists(args.output_dir):
                 os.makedirs(args.output_dir)
