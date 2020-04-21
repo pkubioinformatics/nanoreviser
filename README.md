@@ -56,13 +56,14 @@ You will create an eviroment named nanorev for NanoReviser and install all depen
 
 **Note : you need to replace the path where you installed anaconda**
 
+For Linux Ubuntu 18.04 system:
+
+     $sudo apt-get install libhdf5-serial-dev hdf5-tools
+
 For Linix Centos 7 system:
     
      $ sudo yum install https://download-ib01.fedoraproject.org/pub/epel/7/x86_64/Packages/h/hdf5-1.8.12-11.el7.x86_64.rpm
 
-For Linux Ubuntu 16.4 system:
-
-     $sudo apt-get install libhdf5-serial-dev hdf5-tools
 
 For linux with gpu 
 
