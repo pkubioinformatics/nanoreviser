@@ -16,7 +16,7 @@ def delet_files(log_fn):
     try:
         os.remove(log_fn)
     except Exception as e:
-        a=1
+        a = 1
     if os.path.exists('../unitest_training_results/'):
         shutil.rmtree('../unitest_training_results')
 
