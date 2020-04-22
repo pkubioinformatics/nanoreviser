@@ -32,7 +32,6 @@ dependencies:
   - xz=5.2.4=h1de35cc_4
   - zlib=1.2.11=h1de35cc_3
   - pip:
-    - https://mirror.oxfordnanoportal.com/software/analysis/ont_albacore-2.3.4-cp36-cp36m-macosx_10_11_x86_64.whl
     - chardet==3.0.4
     - decorator==4.4.1
     - get==2019.4.13
@@ -59,5 +58,6 @@ dependencies:
     - tensorflow-estimator==2.0.1
     - wrapt==1.11.2
     - zipp==0.6.0
+    - https://mirror.oxfordnanoportal.com/software/analysis/ont_albacore-2.3.4-cp36-cp36m-macosx_10_11_x86_64.whl
 prefix: ~/anaconda2/envs/nanorevier
 

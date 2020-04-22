@@ -164,7 +164,6 @@ dependencies:
     - lxml==4.4.1
     - matplotlib==3.1.1
     - networkx==2.4
-    - ont-albacore==2.3.4
     - ont-fast5-api==3.0.1
     - opencv-python==4.1.1.26
     - pandas==0.25.3
@@ -193,5 +192,6 @@ dependencies:
     - torch==1.2.0
     - urllib3==1.25.6
     - yarg==0.1.9
+    - https://mirror.oxfordnanoportal.com/software/analysis/ont_albacore-2.3.4-cp36-cp36m-manylinux1_x86_64.whl
 prefix: ~/anaconda2/envs/nanoreviser
 
