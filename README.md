@@ -34,7 +34,7 @@ Nanopore sequencing is regarded as one of the most promising third-generation se
 
 ## Version
 
-+ NanoReviser 1.0 (Tested on MacOS 10.11 and Linux_64, including CentOS 7 and Ubuntu 18.04)
++ NanoReviser 1.0 (Tested on MacOS 10.11 and Linux_64 CentOS 7)
 
 
 ## Installation
@@ -55,11 +55,6 @@ If you currently have TensorFlow installed on your system, we would advise you t
 You will create an eviroment named nanorev for NanoReviser and install all dependencies through conda
 
 **Note : you need to replace the path where you installed anaconda**
-
-
-For Linux Ubuntu 18.04 system:
-
-     $ sudo apt-get install libhdf5-serial-dev hdf5-tools
 
 For Linix Centos 7 system:
     
