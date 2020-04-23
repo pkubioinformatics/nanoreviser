@@ -188,7 +188,6 @@ dependencies:
     - smart-open==1.9.0
     - soupsieve==1.9.5
     - statsmodels==0.11.0
-    - taiyaki==5.0.1
     - torch==1.2.0
     - urllib3==1.25.6
     - yarg==0.1.9
